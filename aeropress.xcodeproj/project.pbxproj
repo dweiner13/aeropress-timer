@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* aeropressApp.swift */; };
+		378916D7270A12D900F696D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D6270A12D900F696D6 /* ContentView.swift */; };
+		378916D9270A12DC00F696D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378916D8270A12DC00F696D6 /* Assets.xcassets */; };
+		378916DC270A12DC00F696D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378916DB270A12DC00F696D6 /* Preview Assets.xcassets */; };
+		378916DE270A12DC00F696D6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916DD270A12DC00F696D6 /* Persistence.swift */; };
+		378916E1270A12DC00F696D6 /* aeropress.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */; };
+		378916EB270A12DD00F696D6 /* aeropressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916EA270A12DD00F696D6 /* aeropressTests.swift */; };
+		378916F5270A12DD00F696D6 /* aeropressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916F4270A12DD00F696D6 /* aeropressUITests.swift */; };
+		378916F7270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916F6270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		378916E7270A12DD00F696D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 378916C9270A12D900F696D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 378916D0270A12D900F696D6;
+			remoteInfo = aeropress;
+		};
+		378916F1270A12DD00F696D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 378916C9270A12D900F696D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 378916D0270A12D900F696D6;
+			remoteInfo = aeropress;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		378916D1270A12D900F696D6 /* aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916D4270A12D900F696D6 /* aeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressApp.swift; sourceTree = "<group>"; };
+		378916D6270A12D900F696D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		378916D8270A12DC00F696D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		378916DB270A12DC00F696D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		378916DD270A12DC00F696D6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		378916E0270A12DC00F696D6 /* aeropress.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = aeropress.xcdatamodel; sourceTree = "<group>"; };
+		378916E6270A12DD00F696D6 /* aeropressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aeropressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916EA270A12DD00F696D6 /* aeropressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressTests.swift; sourceTree = "<group>"; };
+		378916F0270A12DD00F696D6 /* aeropressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aeropressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916F4270A12DD00F696D6 /* aeropressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressUITests.swift; sourceTree = "<group>"; };
+		378916F6270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		378916CE270A12D900F696D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916E3270A12DD00F696D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916ED270A12DD00F696D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		378916C8270A12D900F696D6 = {
+			isa = PBXGroup;
+			children = (
+				378916D3270A12D900F696D6 /* aeropress */,
+				378916E9270A12DD00F696D6 /* aeropressTests */,
+				378916F3270A12DD00F696D6 /* aeropressUITests */,
+				378916D2270A12D900F696D6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		378916D2270A12D900F696D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				378916D1270A12D900F696D6 /* aeropress.app */,
+				378916E6270A12DD00F696D6 /* aeropressTests.xctest */,
+				378916F0270A12DD00F696D6 /* aeropressUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		378916D3270A12D900F696D6 /* aeropress */ = {
+			isa = PBXGroup;
+			children = (
+				378916D4270A12D900F696D6 /* aeropressApp.swift */,
+				378916D6270A12D900F696D6 /* ContentView.swift */,
+				378916D8270A12DC00F696D6 /* Assets.xcassets */,
+				378916DD270A12DC00F696D6 /* Persistence.swift */,
+				378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */,
+				378916DA270A12DC00F696D6 /* Preview Content */,
+			);
+			path = aeropress;
+			sourceTree = "<group>";
+		};
+		378916DA270A12DC00F696D6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				378916DB270A12DC00F696D6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		378916E9270A12DD00F696D6 /* aeropressTests */ = {
+			isa = PBXGroup;
+			children = (
+				378916EA270A12DD00F696D6 /* aeropressTests.swift */,
+			);
+			path = aeropressTests;
+			sourceTree = "<group>";
+		};
+		378916F3270A12DD00F696D6 /* aeropressUITests */ = {
+			isa = PBXGroup;
+			children = (
+				378916F4270A12DD00F696D6 /* aeropressUITests.swift */,
+				378916F6270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift */,
+			);
+			path = aeropressUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		378916D0270A12D900F696D6 /* aeropress */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropress" */;
+			buildPhases = (
+				378916CD270A12D900F696D6 /* Sources */,
+				378916CE270A12D900F696D6 /* Frameworks */,
+				378916CF270A12D900F696D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = aeropress;
+			productName = aeropress;
+			productReference = 378916D1270A12D900F696D6 /* aeropress.app */;
+			productType = "com.apple.product-type.application";
+		};
+		378916E5270A12DD00F696D6 /* aeropressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressTests" */;
+			buildPhases = (
+				378916E2270A12DD00F696D6 /* Sources */,
+				378916E3270A12DD00F696D6 /* Frameworks */,
+				378916E4270A12DD00F696D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				378916E8270A12DD00F696D6 /* PBXTargetDependency */,
+			);
+			name = aeropressTests;
+			productName = aeropressTests;
+			productReference = 378916E6270A12DD00F696D6 /* aeropressTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		378916EF270A12DD00F696D6 /* aeropressUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressUITests" */;
+			buildPhases = (
+				378916EC270A12DD00F696D6 /* Sources */,
+				378916ED270A12DD00F696D6 /* Frameworks */,
+				378916EE270A12DD00F696D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				378916F2270A12DD00F696D6 /* PBXTargetDependency */,
+			);
+			name = aeropressUITests;
+			productName = aeropressUITests;
+			productReference = 378916F0270A12DD00F696D6 /* aeropressUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		378916C9270A12D900F696D6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					378916D0270A12D900F696D6 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					378916E5270A12DD00F696D6 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 378916D0270A12D900F696D6;
+					};
+					378916EF270A12DD00F696D6 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 378916D0270A12D900F696D6;
+					};
+				};
+			};
+			buildConfigurationList = 378916CC270A12D900F696D6 /* Build configuration list for PBXProject "aeropress" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 378916C8270A12D900F696D6;
+			productRefGroup = 378916D2270A12D900F696D6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				378916D0270A12D900F696D6 /* aeropress */,
+				378916E5270A12DD00F696D6 /* aeropressTests */,
+				378916EF270A12DD00F696D6 /* aeropressUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		378916CF270A12D900F696D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				378916DC270A12DC00F696D6 /* Preview Assets.xcassets in Resources */,
+				378916D9270A12DC00F696D6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916E4270A12DD00F696D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916EE270A12DD00F696D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		378916CD270A12D900F696D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				378916DE270A12DC00F696D6 /* Persistence.swift in Sources */,
+				378916D7270A12D900F696D6 /* ContentView.swift in Sources */,
+				378916E1270A12DC00F696D6 /* aeropress.xcdatamodeld in Sources */,
+				378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916E2270A12DD00F696D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				378916EB270A12DD00F696D6 /* aeropressTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		378916EC270A12DD00F696D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				378916F5270A12DD00F696D6 /* aeropressUITests.swift in Sources */,
+				378916F7270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		378916E8270A12DD00F696D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 378916D0270A12D900F696D6 /* aeropress */;
+			targetProxy = 378916E7270A12DD00F696D6 /* PBXContainerItemProxy */;
+		};
+		378916F2270A12DD00F696D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 378916D0270A12D900F696D6 /* aeropress */;
+			targetProxy = 378916F1270A12DD00F696D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		378916F8270A12DD00F696D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		378916F9270A12DD00F696D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		378916FB270A12DD00F696D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"aeropress/Preview Content\"";
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropress;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		378916FC270A12DD00F696D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"aeropress/Preview Content\"";
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropress;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		378916FE270A12DD00F696D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aeropress.app/aeropress";
+			};
+			name = Debug;
+		};
+		378916FF270A12DD00F696D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aeropress.app/aeropress";
+			};
+			name = Release;
+		};
+		37891701270A12DD00F696D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropressUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = aeropress;
+			};
+			name = Debug;
+		};
+		37891702270A12DD00F696D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropressUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = aeropress;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		378916CC270A12D900F696D6 /* Build configuration list for PBXProject "aeropress" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				378916F8270A12DD00F696D6 /* Debug */,
+				378916F9270A12DD00F696D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropress" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				378916FB270A12DD00F696D6 /* Debug */,
+				378916FC270A12DD00F696D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				378916FE270A12DD00F696D6 /* Debug */,
+				378916FF270A12DD00F696D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37891701270A12DD00F696D6 /* Debug */,
+				37891702270A12DD00F696D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				378916E0270A12DC00F696D6 /* aeropress.xcdatamodel */,
+			);
+			currentVersion = 378916E0270A12DC00F696D6 /* aeropress.xcdatamodel */;
+			path = aeropress.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 378916C9270A12D900F696D6 /* Project object */;
+}
