@@ -8,7 +8,7 @@
 import CoreData
 
 extension RecipeStep {
-    enum Kind: Int16, CustomStringConvertible, CaseIterable, Identifiable {
+    enum Kind: Int16, CustomStringConvertible, CaseIterable, Identifiable, Hashable {
         case pour = 0
         case stir = 1
         case steep = 2
@@ -36,6 +36,11 @@ extension RecipeStep {
     }
 
     var unwrappedKind: Kind {
-        Kind(rawValue: kind)!
+        set {
+            kind = newValue.rawValue
+        }
+        get {
+            Kind(rawValue: kind)!
+        }
     }
 }

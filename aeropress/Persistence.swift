@@ -22,19 +22,41 @@ struct PersistenceController {
             let newRecipe = Recipe(context: viewContext)
             newRecipe.title = "Recipe \(UUID().uuidString)"
 
-//            let step = RecipeStep(context: viewContext)
-//            step.durationSeconds = Double(stepNumber * 10)
-//            step.recipe = newRecipe
-            (1..<10)
-                .map { stepNumber -> RecipeStep in
-                    let step = RecipeStep(context: viewContext)
-                    step.durationSeconds = Double(stepNumber * 10)
-                    step.recipe = newRecipe
-                    return step
-                }
-                .forEach { step in
-                    newRecipe.addToSteps(step)
-                }
+            var step = RecipeStep(context: viewContext)
+            step.durationSeconds = 10
+            step.kind = RecipeStep.Kind.pour.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
+
+            step = RecipeStep(context: viewContext)
+            step.durationSeconds = 15
+            step.kind = RecipeStep.Kind.stir.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
+
+            step = RecipeStep(context: viewContext)
+            step.durationSeconds = 45
+            step.kind = RecipeStep.Kind.steep.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
+
+            step = RecipeStep(context: viewContext)
+            step.durationSeconds = 15
+            step.kind = RecipeStep.Kind.pour.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
+
+            step = RecipeStep(context: viewContext)
+            step.durationSeconds = 5
+            step.kind = RecipeStep.Kind.flip.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
+
+            step = RecipeStep(context: viewContext)
+            step.durationSeconds = 20
+            step.kind = RecipeStep.Kind.plunge.rawValue
+            step.recipe = newRecipe
+            newRecipe.addToSteps(step)
         }
         do {
             try viewContext.save()
