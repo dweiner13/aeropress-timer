@@ -21,7 +21,7 @@ struct ContentView: View {
             List {
                 ForEach(recipes) { recipe in
                     NavigationLink {
-                        Text("\(recipe.title ?? "")")
+                        RecipeDetail(recipe: recipe)
                     } label: {
                         Text("\(recipe.title ?? "")")
                     }

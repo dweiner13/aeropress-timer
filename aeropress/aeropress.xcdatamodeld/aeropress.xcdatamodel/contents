@@ -3,13 +3,13 @@
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String" defaultValueString=""/>
-        <relationship name="steps" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipeStep"/>
+        <relationship name="steps" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipeStep" inverseName="recipe" inverseEntity="RecipeStep"/>
     </entity>
     <entity name="RecipeStep" representedClassName="RecipeStep" syncable="YES" codeGenerationType="class">
-        <attribute name="durationSeconds" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="durationSeconds" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="kind" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
-        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="steps" inverseEntity="Recipe"/>
     </entity>
     <elements>
         <element name="Recipe" positionX="-63" positionY="-18" width="128" height="74"/>

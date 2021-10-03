@@ -11,12 +11,30 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
+    static func previewRecipes() -> [Recipe] {
+        try! preview.container.viewContext.fetch(Recipe.fetchRequest())
+    }
+
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Recipe(context: viewContext)
-            newItem.title = "\(UUID().uuidString)"
+            let newRecipe = Recipe(context: viewContext)
+            newRecipe.title = "Recipe \(UUID().uuidString)"
+
+//            let step = RecipeStep(context: viewContext)
+//            step.durationSeconds = Double(stepNumber * 10)
+//            step.recipe = newRecipe
+            (1..<10)
+                .map { stepNumber -> RecipeStep in
+                    let step = RecipeStep(context: viewContext)
+                    step.durationSeconds = Double(stepNumber * 10)
+                    step.recipe = newRecipe
+                    return step
+                }
+                .forEach { step in
+                    newRecipe.addToSteps(step)
+                }
         }
         do {
             try viewContext.save()
