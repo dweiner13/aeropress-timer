@@ -13,6 +13,6 @@ extension Recipe {
     }
 
     var unwrappedSteps: NSOrderedSet {
-        steps!
+        steps ?? []
     }
 }

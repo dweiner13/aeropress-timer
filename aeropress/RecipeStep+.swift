@@ -22,15 +22,15 @@ extension RecipeStep {
         var description: String {
             switch self {
             case .pour:
-                return "pour"
+                return "Pour"
             case .stir:
-                return "stir"
+                return "Stir"
             case .steep:
-                return "steep"
+                return "Steep"
             case .flip:
-                return "flip"
+                return "Flip"
             case .plunge:
-                return "plunge"
+                return "Plunge"
             }
         }
     }

@@ -20,6 +20,7 @@
 		3789170A270A1C9D00F696D6 /* Recipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37891709270A1C9D00F696D6 /* Recipe+.swift */; };
 		3789170C270A1FCE00F696D6 /* RecipeStep+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789170B270A1FCE00F696D6 /* RecipeStep+.swift */; };
 		3789170E270A2F6C00F696D6 /* EditMovePreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789170D270A2F6C00F696D6 /* EditMovePreviewWrapper.swift */; };
+		37891716270A4CC900F696D6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37891715270A4CC900F696D6 /* TimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		37891709270A1C9D00F696D6 /* Recipe+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+.swift"; sourceTree = "<group>"; };
 		3789170B270A1FCE00F696D6 /* RecipeStep+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeStep+.swift"; sourceTree = "<group>"; };
 		3789170D270A2F6C00F696D6 /* EditMovePreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovePreviewWrapper.swift; sourceTree = "<group>"; };
+		37891715270A4CC900F696D6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +88,6 @@
 		378916C8270A12D900F696D6 = {
 			isa = PBXGroup;
 			children = (
-				37891707270A1A3B00F696D6 /* RecipeDetail.swift */,
 				378916D3270A12D900F696D6 /* aeropress */,
 				378916E9270A12DD00F696D6 /* aeropressTests */,
 				378916F3270A12DD00F696D6 /* aeropressUITests */,
@@ -107,6 +108,7 @@
 		378916D3270A12D900F696D6 /* aeropress */ = {
 			isa = PBXGroup;
 			children = (
+				37891707270A1A3B00F696D6 /* RecipeDetail.swift */,
 				378916D4270A12D900F696D6 /* aeropressApp.swift */,
 				378916D6270A12D900F696D6 /* ContentView.swift */,
 				378916D8270A12DC00F696D6 /* Assets.xcassets */,
@@ -115,6 +117,7 @@
 				378916DA270A12DC00F696D6 /* Preview Content */,
 				37891709270A1C9D00F696D6 /* Recipe+.swift */,
 				3789170B270A1FCE00F696D6 /* RecipeStep+.swift */,
+				37891715270A4CC900F696D6 /* TimerView.swift */,
 			);
 			path = aeropress;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37891716270A4CC900F696D6 /* TimerView.swift in Sources */,
 				3789170C270A1FCE00F696D6 /* RecipeStep+.swift in Sources */,
 				378916DE270A12DC00F696D6 /* Persistence.swift in Sources */,
 				3789170A270A1C9D00F696D6 /* Recipe+.swift in Sources */,

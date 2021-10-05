@@ -18,34 +18,60 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
+            LazyVGrid(columns: [GridItem(), GridItem()]) {
                 ForEach(recipes) { recipe in
-                    NavigationLink {
-                        RecipeDetail(recipe: recipe)
-                    } label: {
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color(UIColor.secondarySystemBackground))
+                            .frame(height: 150)
                         Text("\(recipe.title ?? "")")
+                            .padding(12)
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Button {
+                                    // do nothing
+                                } label: {
+                                    Image(systemName: "play.circle.fill")
+                                        .resizable()
+                                        .frame(width: 30, height: 30).padding()
+                                }
+
+                            }
+                        }
                     }
                 }
-                .onDelete(perform: deleteRecipes)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addRecipe) {
-                        Label("Add Recipe", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an recipe")
+            }.padding()
+//            List {
+//                ForEach(recipes) { recipe in
+//                    NavigationLink {
+//                        RecipeDetail(recipe: recipe)
+//                    } label: {
+//                        Text("\(recipe.title ?? "")")
+//                    }
+//                }
+//                .onDelete(perform: deleteRecipes)
+//            }
+//                .listStyle(.grouped)
+//                .navigationTitle("Recipes")
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        EditButton()
+//                    }
+//                    ToolbarItem {
+//                        Button(action: addRecipe) {
+//                            Label("Add Recipe", systemImage: "plus")
+//                        }
+//                    }
+//                }
+            Text("Select a recipe")
         }
     }
 
     private func addRecipe() {
         withAnimation {
-            let newRecipe = Recipe(context: viewContext)
-            newRecipe.title = "Recipe \(UUID().uuidString)"
+            _ = newRecipeFromTemplate(in: viewContext)
 
             do {
                 try viewContext.save()

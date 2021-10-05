@@ -19,44 +19,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newRecipe = Recipe(context: viewContext)
-            newRecipe.title = "Recipe \(UUID().uuidString)"
-
-            var step = RecipeStep(context: viewContext)
-            step.durationSeconds = 10
-            step.kind = RecipeStep.Kind.pour.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
-
-            step = RecipeStep(context: viewContext)
-            step.durationSeconds = 15
-            step.kind = RecipeStep.Kind.stir.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
-
-            step = RecipeStep(context: viewContext)
-            step.durationSeconds = 45
-            step.kind = RecipeStep.Kind.steep.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
-
-            step = RecipeStep(context: viewContext)
-            step.durationSeconds = 15
-            step.kind = RecipeStep.Kind.pour.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
-
-            step = RecipeStep(context: viewContext)
-            step.durationSeconds = 5
-            step.kind = RecipeStep.Kind.flip.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
-
-            step = RecipeStep(context: viewContext)
-            step.durationSeconds = 20
-            step.kind = RecipeStep.Kind.plunge.rawValue
-            step.recipe = newRecipe
-            newRecipe.addToSteps(step)
+            _ = newRecipeFromTemplate(in: viewContext)
         }
         do {
             try viewContext.save()
@@ -93,4 +56,48 @@ struct PersistenceController {
             }
         })
     }
+}
+
+
+func newRecipeFromTemplate(in context: NSManagedObjectContext) -> Recipe {
+    let newRecipe = Recipe(context: context)
+    newRecipe.title = "Recipe \(UUID().uuidString)"
+
+    var step = RecipeStep(context: context)
+    step.durationSeconds = 10
+    step.kind = RecipeStep.Kind.pour.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    step = RecipeStep(context: context)
+    step.durationSeconds = 15
+    step.kind = RecipeStep.Kind.stir.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    step = RecipeStep(context: context)
+    step.durationSeconds = 45
+    step.kind = RecipeStep.Kind.steep.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    step = RecipeStep(context: context)
+    step.durationSeconds = 15
+    step.kind = RecipeStep.Kind.pour.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    step = RecipeStep(context: context)
+    step.durationSeconds = 5
+    step.kind = RecipeStep.Kind.flip.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    step = RecipeStep(context: context)
+    step.durationSeconds = 20
+    step.kind = RecipeStep.Kind.plunge.rawValue
+    step.recipe = newRecipe
+    newRecipe.addToSteps(step)
+
+    return newRecipe
 }
