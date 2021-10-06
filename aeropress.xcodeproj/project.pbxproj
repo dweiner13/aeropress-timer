@@ -108,9 +108,9 @@
 		378916D3270A12D900F696D6 /* aeropress */ = {
 			isa = PBXGroup;
 			children = (
-				37891707270A1A3B00F696D6 /* RecipeDetail.swift */,
 				378916D4270A12D900F696D6 /* aeropressApp.swift */,
 				378916D6270A12D900F696D6 /* ContentView.swift */,
+				37891707270A1A3B00F696D6 /* RecipeDetail.swift */,
 				378916D8270A12DC00F696D6 /* Assets.xcassets */,
 				378916DD270A12DC00F696D6 /* Persistence.swift */,
 				378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */,

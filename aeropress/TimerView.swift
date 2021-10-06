@@ -93,13 +93,16 @@ class TimerModel: ObservableObject {
             }
             timer = nextStageTimer
             self.timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
-            countdownTimer = .scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] timer in
-                print("countdownTimer firing...")
-                guard let self = self else {
-                    return
-                }
-                self.timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
-            })
+
+            if countdownTimer == nil {
+                countdownTimer = .scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] timer in
+                    print("countdownTimer firing...")
+                    guard let self = self else {
+                        return
+                    }
+                    self.timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
+                })
+            }
         }
     }
 }
@@ -135,8 +138,6 @@ struct TimerView: View {
                         .font(.largeTitle)
                     Text("\(timerModel.timeToNextFire?.formatted(.number.precision(.fractionLength(0))) ?? "")")
                         .font(.largeTitle.bold())
-                default:
-                    Text("Not handled yet")
                 }
             }
             VStack {

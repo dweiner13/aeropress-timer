@@ -18,53 +18,28 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            LazyVGrid(columns: [GridItem(), GridItem()]) {
+            List {
                 ForEach(recipes) { recipe in
-                    ZStack(alignment: .topLeading) {
-                        RoundedRectangle(cornerRadius: 25)
-                            .fill(Color(UIColor.secondarySystemBackground))
-                            .frame(height: 150)
+                    NavigationLink {
+                        RecipeDetail(recipe: recipe)
+                    } label: {
                         Text("\(recipe.title ?? "")")
-                            .padding(12)
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                Button {
-                                    // do nothing
-                                } label: {
-                                    Image(systemName: "play.circle.fill")
-                                        .resizable()
-                                        .frame(width: 30, height: 30).padding()
-                                }
-
-                            }
+                    }
+                }
+                .onDelete(perform: deleteRecipes)
+            }
+                .listStyle(.grouped)
+                .navigationTitle("Recipes")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addRecipe) {
+                            Label("Add Recipe", systemImage: "plus")
                         }
                     }
                 }
-            }.padding()
-//            List {
-//                ForEach(recipes) { recipe in
-//                    NavigationLink {
-//                        RecipeDetail(recipe: recipe)
-//                    } label: {
-//                        Text("\(recipe.title ?? "")")
-//                    }
-//                }
-//                .onDelete(perform: deleteRecipes)
-//            }
-//                .listStyle(.grouped)
-//                .navigationTitle("Recipes")
-//                .toolbar {
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        EditButton()
-//                    }
-//                    ToolbarItem {
-//                        Button(action: addRecipe) {
-//                            Label("Add Recipe", systemImage: "plus")
-//                        }
-//                    }
-//                }
             Text("Select a recipe")
         }
     }

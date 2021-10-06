@@ -13,6 +13,7 @@ struct RecipeDetail: View {
 
     enum Field {
         case title
+        case notes
     }
 
     @FocusState
@@ -66,7 +67,6 @@ struct RecipeDetail: View {
                     .focused($focusedField, equals: .title)
                     .onSubmit {
                         do {
-                            print("onSubmit")
                             try viewContext.save()
                         } catch {
                             // Replace this implementation with code to handle the error appropriately.
@@ -87,16 +87,13 @@ struct RecipeDetail: View {
                 } label: {
                     Label("Start", systemImage: "play.fill")
                 }
-                Section {
+                Section("Notes") {
                     VStack(alignment: .leading) {
-                        Text("Notes")
-                            .foregroundColor(.secondary)
                         TextEditor(text: notesBinding)
-                            .frame(height: 100)
-                            .border(Color(UIColor.systemFill))
+                            .focused($focusedField, equals: .notes)
                     }
                 }
-                Section {
+                Section("Steps") {
                     ForEach(steps) { step in
                         RecipeStepListItem(step: step, index: index(of: step))
                     }
@@ -144,6 +141,7 @@ struct RecipeDetail: View {
             }
         }
         .onChange(of: focusedField, perform: { newValue in
+            // Save whenever focus blurs
             if newValue == nil {
                 do {
                     try viewContext.save()
@@ -163,7 +161,14 @@ struct RecipeDetail: View {
         }
         .toolbar {
             ToolbarItem {
-                EditButton()
+                if focusedField == nil {
+                    EditButton()
+                } else {
+                    Button("Done") {
+                        $focusedField.wrappedValue = nil
+                        editMode?.wrappedValue = .inactive
+                    }
+                }
             }
         }
     }
@@ -287,6 +292,6 @@ struct RecipeDetail_Previews: PreviewProvider {
                     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             }
         }
-        .preferredColorScheme(.dark)
+
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="21A5304g" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="21A5506j" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String" defaultValueString=""/>
-        <relationship name="steps" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipeStep" inverseName="recipe" inverseEntity="RecipeStep"/>
+        <relationship name="steps" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipeStep" inverseName="recipe" inverseEntity="RecipeStep"/>
     </entity>
     <entity name="RecipeStep" representedClassName="RecipeStep" syncable="YES" codeGenerationType="class">
         <attribute name="durationSeconds" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
