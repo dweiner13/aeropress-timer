@@ -64,6 +64,7 @@ class TimerModel: ObservableObject {
         timer = nil
         countdownTimer?.invalidate()
         countdownTimer = nil
+        currentStage = .getReady
     }
 
     @Published
@@ -76,33 +77,31 @@ class TimerModel: ObservableObject {
     }
 
     private func goToNextStage() {
-        guard let nextStage = stage(after: currentStage) else {
-            fatalError()
-        }
+        guard let nextStage = stage(after: currentStage) else { fatalError() }
+        guard case .step(let step) = nextStage else { return }
+
         self.currentStage = nextStage
-        if case .step(let step) = nextStage {
-            let nextStageTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(step.durationSeconds),
-                                         repeats: false) { [weak self] timer in
-                print("nextStageTimer firing...")
+
+        let nextStageTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(step.durationSeconds),
+                                                  repeats: false) { [weak self] timer in
+            print("nextStageTimer firing...")
+            guard let self = self else {
+                return
+            }
+            timer.invalidate()
+            self.timer = nil
+            self.goToNextStage()
+        }
+        timer = nextStageTimer
+        timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
+
+        if countdownTimer == nil {
+            countdownTimer = .scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
                 guard let self = self else {
                     return
                 }
-                timer.invalidate()
-                self.timer = nil
-                self.goToNextStage()
-            }
-            timer = nextStageTimer
-            self.timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
-
-            if countdownTimer == nil {
-                countdownTimer = .scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] timer in
-                    print("countdownTimer firing...")
-                    guard let self = self else {
-                        return
-                    }
-                    self.timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
-                })
-            }
+                self.timeToNextFire = max(0, self.timer?.fireDate.timeIntervalSinceNow ?? -1)
+            })
         }
     }
 }
@@ -121,6 +120,14 @@ struct TimerView: View {
         _timerModel = StateObject(wrappedValue: TimerModel(recipe: recipe))
     }
 
+    var timeRemaining: String {
+        guard let timeToNextFire = timerModel.timeToNextFire else {
+            return ""
+        }
+
+        return floor(timeToNextFire).formatted(.number.precision(.fractionLength(0)))
+    }
+
     var body: some View {
         ZStack(alignment: .center) {
             VStack(spacing: 24) {
@@ -136,7 +143,7 @@ struct TimerView: View {
                 case .step(let step):
                     Text("\(step.unwrappedKind.description)")
                         .font(.largeTitle)
-                    Text("\(timerModel.timeToNextFire?.formatted(.number.precision(.fractionLength(0))) ?? "")")
+                    Text(timeRemaining)
                         .font(.largeTitle.bold())
                 }
             }

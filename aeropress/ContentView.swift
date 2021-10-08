@@ -13,27 +13,39 @@ struct ContentView: View {
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title, ascending: true)],
+        predicate: NSPredicate(format: "isFavorite == true"),
         animation: .default)
-    private var recipes: FetchedResults<Recipe>
+    private var favoriteRecipes: FetchedResults<Recipe>
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title, ascending: true)],
+        predicate: NSPredicate(format: "isFavorite == false"),
+        animation: .default)
+    private var notFavoriteRecipes: FetchedResults<Recipe>
+
+    @State
+    var currentTimerRecipe: Recipe?
+
+    @State
+    var showingDeleteConf: Bool = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(recipes) { recipe in
-                    NavigationLink {
-                        RecipeDetail(recipe: recipe)
-                    } label: {
-                        Text("\(recipe.title ?? "")")
+                if favoriteRecipes.isEmpty {
+                    viewsForRecipes(notFavoriteRecipes)
+                } else {
+                    Section("Pinned") {
+                        viewsForRecipes(favoriteRecipes)
+                    }
+                    Section("Recipes") {
+                        viewsForRecipes(notFavoriteRecipes)
                     }
                 }
-                .onDelete(perform: deleteRecipes)
             }
-                .listStyle(.grouped)
+                .listStyle(.sidebar)
                 .navigationTitle("Recipes")
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
                     ToolbarItem {
                         Button(action: addRecipe) {
                             Label("Add Recipe", systemImage: "plus")
@@ -42,11 +54,73 @@ struct ContentView: View {
                 }
             Text("Select a recipe")
         }
+        .sheet(item: $currentTimerRecipe) { recipe in
+            TimerView(recipe: recipe)
+        }
+
     }
 
-    private func addRecipe() {
+    @ViewBuilder
+    private func viewsForRecipes(_ recipes: FetchedResults<Recipe>) -> some View {
+        ForEach(recipes) { recipe in
+            NavigationLink {
+                RecipeDetail(recipe: recipe)
+            } label: {
+                Text("\(recipe.title ?? "")")
+            }
+            .contextMenu {
+                runButton(recipe: recipe)
+                Divider()
+                toggleFavoriteButton(recipe: recipe)
+                duplicateButton(recipe: recipe)
+                deleteButton(recipe: recipe)
+            }
+            .swipeActions(edge: .leading) {
+                deleteButton(recipe: recipe)
+                duplicateButton(recipe: recipe)
+            }
+            .swipeActions(edge: .trailing) {
+                runButton(recipe: recipe)
+                toggleFavoriteButton(recipe: recipe)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func runButton(recipe: Recipe) -> some View {
+        Button { runRecipe(recipe) } label: {
+            Label("Start Recipe", systemImage: "play")
+        }.tint(.blue)
+    }
+
+    @ViewBuilder
+    private func duplicateButton(recipe: Recipe) -> some View {
+        Button { duplicateRecipe(recipe) } label: {
+            Label("Duplicate Recipe", systemImage: "plus.square.on.square")
+        }.tint(.green)
+    }
+
+    @ViewBuilder
+    private func deleteButton(recipe: Recipe) -> some View {
+        Button(role: .destructive) { deleteRecipe(recipe) } label: {
+            Label("Delete Recipe", systemImage: "trash")
+        }
+    }
+
+    @ViewBuilder
+    private func toggleFavoriteButton(recipe: Recipe) -> some View {
+        Button { toggleFavoriteRecipe(recipe) } label: {
+            Label(recipe.isFavorite ? "Unpin Recipe" : "Pin Recipe", systemImage: recipe.isFavorite ? "pin.slash" : "pin")
+        }.tint(.yellow)
+    }
+
+    private func runRecipe(_ recipe: Recipe) {
+        currentTimerRecipe = recipe
+    }
+
+    private func duplicateRecipe(_ recipe: Recipe) {
         withAnimation {
-            _ = newRecipeFromTemplate(in: viewContext)
+            _ = Recipe(recipe: recipe, context: viewContext)
 
             do {
                 try viewContext.save()
@@ -59,9 +133,39 @@ struct ContentView: View {
         }
     }
 
-    private func deleteRecipes(offsets: IndexSet) {
+    private func deleteRecipe(_ recipe: Recipe) {
         withAnimation {
-            offsets.map { recipes[$0] }.forEach(viewContext.delete)
+            viewContext.delete(recipe)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
+    private func toggleFavoriteRecipe(_ recipe: Recipe) {
+        withAnimation {
+            recipe.isFavorite.toggle()
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
+    private func addRecipe() {
+        withAnimation {
+            _ = newRecipeFromTemplate(in: viewContext)
 
             do {
                 try viewContext.save()

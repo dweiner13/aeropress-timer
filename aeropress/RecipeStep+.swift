@@ -43,4 +43,14 @@ extension RecipeStep {
             Kind(rawValue: kind)!
         }
     }
+
+    /// Creates a step from another RecipeStep
+    convenience init(recipeStep: RecipeStep, context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        durationSeconds = recipeStep.durationSeconds
+        recipe = recipeStep.recipe
+        notes = recipeStep.notes
+        kind = recipeStep.kind
+    }
 }

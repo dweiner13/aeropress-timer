@@ -90,6 +90,7 @@ struct RecipeDetail: View {
                 Section("Notes") {
                     VStack(alignment: .leading) {
                         TextEditor(text: notesBinding)
+                            .frame(height: 100.0)
                             .focused($focusedField, equals: .notes)
                     }
                 }

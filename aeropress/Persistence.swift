@@ -61,7 +61,7 @@ struct PersistenceController {
 
 func newRecipeFromTemplate(in context: NSManagedObjectContext) -> Recipe {
     let newRecipe = Recipe(context: context)
-    newRecipe.title = "Recipe \(UUID().uuidString)"
+    newRecipe.title = "Recipe \(Int.random(in: 0..<100))"
 
     var step = RecipeStep(context: context)
     step.durationSeconds = 10
