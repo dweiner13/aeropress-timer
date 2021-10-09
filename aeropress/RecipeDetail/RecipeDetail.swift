@@ -75,7 +75,6 @@ struct RecipeDetail: View {
                             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                         }
                     }
-                //                            TextEditor(text: titleBinding)
             } else {
                 Text(recipe.unwrappedTitle)
                     .font(.title)
@@ -156,7 +155,6 @@ struct RecipeDetail: View {
         })
         .listStyle(.grouped)
         .navigationBarTitleDisplayMode(.inline)
-//        .navigationTitle(recipe.unwrappedTitle)
         .sheet(isPresented: $presentingTimerView) {
             TimerView(recipe: recipe)
         }
@@ -191,108 +189,11 @@ struct RecipeDetail: View {
     }
 }
 
-struct RecipeStepListItem: View {
-    @ObservedObject
-    var step: RecipeStep
-    let index: Int
-
-    @Environment(\.managedObjectContext)
-    private var viewContext
-
-    @Environment(\.editMode)
-    private var editMode
-
-    @State
-    private var showingDetail = false
-
-    enum Field: Hashable {
-        case durationTextField
-    }
-
-    @FocusState
-    private var focusedField: Field?
-
-    var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text("\(index + 1).")
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                HStack(spacing: 8) {
-                    Button {
-                        showingDetail.toggle()
-                    } label: {
-                        Text("\(step.unwrappedKind.description)")
-                    }
-                    .foregroundColor(.accentColor)
-                }
-                Spacer()
-                if focusedField != nil {
-                    Button("Done") {
-                        focusedField = nil
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-                HStack(spacing: 8) {
-                    TextField("",
-                              value: $step.durationSeconds,
-                              format: .number.precision(.fractionLength(0)),
-                              prompt: Text(""))
-                        .focused($focusedField, equals: .durationTextField)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.accentColor)
-                        .keyboardType(.numberPad)
-                        .frame(width: 50)
-                        .fixedSize()
-                        .textFieldStyle(.roundedBorder)
-                    Text(" seconds")
-                        .foregroundColor(.secondary)
-                        .fontWeight(.regular)
-                }
-            }
-            .sheet(isPresented: $showingDetail) {
-                NavigationView {
-                    KindPicker(step: step, index: index)
-                }
-            }
-        }
-        .padding(.vertical, 8)
-        .font(.headline)
-    }
-}
-
-struct KindPicker: View {
-    @ObservedObject
-    var step: RecipeStep
-
-    @Environment(\.dismiss)
-    var dismiss
-
-    let index: Int
-
-    var body: some View {
-        Form {
-            Picker("", selection: $step.kind) {
-                ForEach(RecipeStep.Kind.allCases) { kind in
-                    Text(kind.description)
-                }
-            }
-            .pickerStyle(.inline)
-        }
-        .onChange(of: step.kind, perform: { _ in
-            dismiss()
-        })
-        .navigationTitle("Step \(index + 1)")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
 struct RecipeDetail_Previews: PreviewProvider {
     static var previews: some View {
-        EditModePreviewWrapper {
-            NavigationView {
-                RecipeDetail(recipe: PersistenceController.previewRecipes().first!)
-                    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            }
+        NavigationView {
+            RecipeDetail(recipe: PersistenceController.previewRecipes().first!)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
-
     }
 }

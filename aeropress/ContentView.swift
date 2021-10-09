@@ -27,6 +27,9 @@ struct ContentView: View {
     var currentTimerRecipe: Recipe?
 
     @State
+    var currentEditingRecipe: Recipe?
+
+    @State
     var showingDeleteConf: Bool = false
 
     var body: some View {
@@ -57,16 +60,23 @@ struct ContentView: View {
         .sheet(item: $currentTimerRecipe) { recipe in
             TimerView(recipe: recipe)
         }
-
+        .sheet(item: $currentEditingRecipe) { recipe in
+            NavigationView {
+                RecipeDetail(recipe: recipe)
+            }
+        }
     }
 
     @ViewBuilder
     private func viewsForRecipes(_ recipes: FetchedResults<Recipe>) -> some View {
         ForEach(recipes) { recipe in
-            NavigationLink {
-                RecipeDetail(recipe: recipe)
-            } label: {
-                Text("\(recipe.title ?? "")")
+            HStack(spacing: 16) {
+                Button(recipe.title ?? "") { runRecipe(recipe) }
+                Spacer()
+                Button { currentEditingRecipe = recipe } label: {
+                    Image(systemName: "ellipsis.circle.fill")
+                }
+                    .buttonStyle(.borderless)
             }
             .contextMenu {
                 runButton(recipe: recipe)
