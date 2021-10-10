@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct MenuButton: UIViewRepresentable {
 
@@ -35,12 +36,14 @@ struct MenuButton: UIViewRepresentable {
         }
 
         private func updateMenu(selectedKind: RecipeStep.Kind) {
-            menu = menu.replacingChildren(RecipeStep.Kind.allCases.map({ kind in
+            let menuActions = RecipeStep.Kind.allCases.map({ kind in
                 UIAction(title: kind.description,
-                         state: selectedKind == kind ? .on : .off,
-                         handler: { _ in self.selectedKind.wrappedValue = kind })
-            }))
-            button?.menu = UIMenu(children: [UIAction(title: selectedKind.description, handler: { _ in })])
+                         state: selectedKind == kind ? .on : .off) { _ in
+                    self.selectedKind.wrappedValue = kind
+                    self.updateMenu(selectedKind: kind)
+                }
+            })
+            button?.menu = UIMenu(title: "", children: menuActions)
             button?.setTitle(selectedKind.description, for: .normal)
         }
     }
@@ -56,7 +59,14 @@ struct MenuButton: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> UIButton {
-        let button = UIButton(configuration: .borderless(), primaryAction: nil)
+        var configuration = UIButton.Configuration.bordered()
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 8
+        configuration.preferredSymbolConfigurationForImage = .init(pointSize: 10, weight: .semibold)
+        configuration.buttonSize = .medium
+        configuration.cornerStyle = .dynamic
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+//        button.setImage(.init(systemName: "chevron.up.chevron.down"), for: .normal)
         context.coordinator.button = button
         button.showsMenuAsPrimaryAction = true
         return button
@@ -89,42 +99,40 @@ struct RecipeStepListItem: View {
     private var focusedField: Field?
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
+        HStack(alignment: .center, spacing: 8) {
             Text("\(index + 1).")
-            HStack(alignment: .firstTextBaseline, spacing: 0) {
-                HStack(spacing: 8) {
-                    MenuButton($step.unwrappedKind)
-//                    Button {
-//                        showingDetail.toggle()
-//                    } label: {
-//                        Text("\(step.unwrappedKind.description)")
-//                    }
-//                    .foregroundColor(.accentColor)
-                }
+                .foregroundColor(.secondary)
+                .font(.headline)
+            HStack(alignment: .center, spacing: 8) {
+                MenuButton($step.unwrappedKind)
+                    .fixedSize()
                 Spacer()
-                if focusedField != nil {
-                    Button("Done") {
-                        focusedField = nil
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-                HStack(spacing: 8) {
-                    TextField("",
-                              value: $step.durationSeconds,
-                              format: .number.precision(.fractionLength(0)),
-                              prompt: Text(""))
-                        .focused($focusedField, equals: .durationTextField)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.accentColor)
-                        .keyboardType(.numberPad)
-                        .frame(width: 50)
-                        .fixedSize()
-                        .textFieldStyle(.roundedBorder)
-                    Text(" s")
-                        .foregroundColor(.secondary)
-                        .fontWeight(.regular)
-                        .lineLimit(1)
-                }
+                Text("for")
+                    .font(.body)
+                    .foregroundColor(.secondary)
+//                if focusedField != nil {
+//                    Button("Done") {
+//                        focusedField = nil
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                }
+                TextField("",
+                          value: $step.durationSeconds,
+                          format: .number.precision(.fractionLength(0)),
+                          prompt: Text(""))
+                    .focused($focusedField, equals: .durationTextField)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.accentColor)
+                    .keyboardType(.numberPad)
+                    .frame(width: 30)
+                    .padding(6)
+                    .fixedSize()
+                    .background(Color(UIColor.secondarySystemFill))
+                    .cornerRadius(6)
+                Text(" s")
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
             }
             .sheet(isPresented: $showingDetail) {
                 NavigationView {
@@ -132,17 +140,18 @@ struct RecipeStepListItem: View {
                 }
             }
         }
-        .padding(.vertical, 8)
-        .font(.headline)
+        .padding(.vertical, 16)
     }
 }
 
 struct RecipeStepListItem_Previews: PreviewProvider {
     static var previews: some View {
         EditModePreviewWrapper {
-            List(PersistenceController.previewRecipes().first!.steps!.array as! [RecipeStep]) { step in
-                RecipeStepListItem(step: step, index: 1)
-            }.environment(\.editMode, .constant(.active))
+            NavigationView {
+                List(PersistenceController.previewRecipes().first!.steps!.array as! [RecipeStep]) { step in
+                    RecipeStepListItem(step: step, index: 1)
+                }.environment(\.editMode, .constant(.active))
+            }
         }
     }
 }

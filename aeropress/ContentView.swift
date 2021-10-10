@@ -74,10 +74,12 @@ struct ContentView: View {
                 Button(recipe.title ?? "") { runRecipe(recipe) }
                 Spacer()
                 Button { currentEditingRecipe = recipe } label: {
-                    Image(systemName: "ellipsis.circle.fill")
+                    Image(systemName: "info.circle")
+                        .imageScale(.medium)
                 }
                     .buttonStyle(.borderless)
             }
+            .padding(.trailing, 8)
             .contextMenu {
                 runButton(recipe: recipe)
                 Divider()
