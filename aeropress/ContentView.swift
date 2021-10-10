@@ -38,8 +38,15 @@ struct ContentView: View {
                 if favoriteRecipes.isEmpty {
                     viewsForRecipes(notFavoriteRecipes)
                 } else {
-                    Section("Pinned") {
+                    Section {
                         viewsForRecipes(favoriteRecipes)
+                    } header: {
+                        HStack {
+                            Text("Pinned")
+                            Image(systemName: "pin.circle.fill")
+                                .imageScale(.large)
+                                .symbolRenderingMode(.multicolor)
+                        }
                     }
                     Section("Recipes") {
                         viewsForRecipes(notFavoriteRecipes)
@@ -73,15 +80,15 @@ struct ContentView: View {
             HStack(spacing: 16) {
                 Button(recipe.title ?? "") { runRecipe(recipe) }
                 Spacer()
-                Button { currentEditingRecipe = recipe } label: {
-                    Image(systemName: "info.circle")
-                        .imageScale(.large)
-                }
+                editButton(recipe: recipe)
+                    .labelStyle(.iconOnly)
                     .buttonStyle(.borderless)
+                    .imageScale(.large)
             }
             .padding(.trailing, 8)
             .contextMenu {
                 runButton(recipe: recipe)
+                editButton(recipe: recipe)
                 Divider()
                 toggleFavoriteButton(recipe: recipe)
                 duplicateButton(recipe: recipe)
@@ -92,7 +99,6 @@ struct ContentView: View {
                 duplicateButton(recipe: recipe)
             }
             .swipeActions(edge: .trailing) {
-                runButton(recipe: recipe)
                 toggleFavoriteButton(recipe: recipe)
             }
         }
@@ -106,10 +112,17 @@ struct ContentView: View {
     }
 
     @ViewBuilder
+    private func editButton(recipe: Recipe) -> some View {
+        Button { currentEditingRecipe = recipe } label: {
+            Label("Recipe Details", systemImage: "info.circle")
+        }
+    }
+
+    @ViewBuilder
     private func duplicateButton(recipe: Recipe) -> some View {
         Button { duplicateRecipe(recipe) } label: {
             Label("Duplicate Recipe", systemImage: "plus.square.on.square")
-        }.tint(.green)
+        }.tint(.blue)
     }
 
     @ViewBuilder
@@ -123,7 +136,8 @@ struct ContentView: View {
     private func toggleFavoriteButton(recipe: Recipe) -> some View {
         Button { toggleFavoriteRecipe(recipe) } label: {
             Label(recipe.isFavorite ? "Unpin Recipe" : "Pin Recipe", systemImage: recipe.isFavorite ? "pin.slash" : "pin")
-        }.tint(.yellow)
+        }
+        .tint(.orange)
     }
 
     private func runRecipe(_ recipe: Recipe) {
