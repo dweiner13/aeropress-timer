@@ -137,7 +137,8 @@ struct TimerView: View {
                         .font(.largeTitle)
                     Button("Start", action: { timerModel.start() })
                         .buttonStyle(.borderedProminent)
-                        .font(.title)
+                        .controlSize(.large)
+                        .font(.title.bold())
                 case .done:
                     Text("Done")
                 case .step(let step):
@@ -150,7 +151,7 @@ struct TimerView: View {
             VStack {
                 Spacer()
                 Button("Cancel", action: { self.timerModel.cancel(); self.dismiss() } )
-                    .frame(minHeight: 44)
+                    .buttonStyle(.bordered)
             }
         }
 

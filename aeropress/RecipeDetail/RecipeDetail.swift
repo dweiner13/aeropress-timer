@@ -32,6 +32,7 @@ struct StickyHeader<Content: View>: View {
     }
 }
 
+
 struct RecipeDetail: View {
 
     enum Field {
@@ -96,18 +97,27 @@ struct RecipeDetail: View {
         }
     }
 
+    @AppStorage("RecipeDetail.isNotesExpanded")
+    var isNotesExpanded = false
+
     var body: some View {
         List {
             TextField("Title", text: titleBinding, prompt: nil)
                 .multilineTextAlignment(.leading)
-                .font(.title)
-                .foregroundColor(.accentColor)
+                .font(.headline)
                 .focused($focusedField, equals: .title)
             Section("Notes") {
-                VStack(alignment: .leading) {
+                ZStack(alignment: .bottomTrailing) {
                     TextEditor(text: notesBinding)
-                        .frame(minHeight: 100)
+                        .frame(minHeight: isNotesExpanded ? 300 : 80)
                         .focused($focusedField, equals: .notes)
+                    Button { isNotesExpanded.toggle() } label: {
+                        Image(systemName: isNotesExpanded
+                              ? "arrow.down.right.and.arrow.up.left"
+                              : "arrow.up.left.and.arrow.down.right")
+                    }
+                    .frame(width: 30, height: 30)
+                    .offset(x: 15, y: 4)
                 }
             }
             Section("Steps") {
@@ -146,15 +156,13 @@ struct RecipeDetail: View {
                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                     }
                 }
-            }
-            Section {
                 Button {
                     withAnimation {
                         addStep()
                     }
                 } label: {
                     Label("Add step", systemImage: "plus")
-                }.disabled(editMode?.wrappedValue.isEditing ?? true)
+                }
             }
         }
         .onChange(of: focusedField) { newValue in
@@ -170,13 +178,12 @@ struct RecipeDetail: View {
                 }
             }
         }
-        .environment(\.editMode, .constant(.active))
+//        .environment(\.editMode, .constant(.active))
         .listStyle(.insetGrouped)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $presentingTimerView) {
             TimerView(recipe: recipe)
         }
-        .navigationTitle("Edit Recipe")
         .toolbar {
             ToolbarItem {
                 if focusedField != nil {
@@ -188,6 +195,9 @@ struct RecipeDetail: View {
                             .font(.body.bold())
                     }
                 }
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                EditButton()
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button { dismiss() } label: { Text("Done").bold() }

@@ -75,7 +75,7 @@ struct ContentView: View {
                 Spacer()
                 Button { currentEditingRecipe = recipe } label: {
                     Image(systemName: "info.circle")
-                        .imageScale(.medium)
+                        .imageScale(.large)
                 }
                     .buttonStyle(.borderless)
             }
