@@ -56,40 +56,52 @@ struct RecipeDetail: View {
         }
     }
 
+    var isEditing: Bool {
+        editMode?.wrappedValue.isEditing ?? true
+    }
+
+    func toggleEditing() {
+        switch editMode?.wrappedValue {
+        case .active, .transient: editMode?.wrappedValue = .inactive
+        case .inactive: editMode?.wrappedValue = .active
+        case .some: return
+        case nil: return
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if editMode?.wrappedValue == .active {
+//            if editMode?.wrappedValue == .active {
+//                TextField("Title", text: titleBinding, prompt: nil)
+//                    .multilineTextAlignment(.leading)
+//                    .font(.title)
+//                    .padding(.horizontal, 12)
+//                    .foregroundColor(.accentColor)
+//                    .focused($focusedField, equals: .title)
+//                    .onSubmit {
+//                        do {
+//                            try viewContext.save()
+//                        } catch {
+//                            // Replace this implementation with code to handle the error appropriately.
+//                            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                            let nsError = error as NSError
+//                            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//                        }
+//                    }
+//            } else {
+//                Text(recipe.unwrappedTitle)
+//                    .font(.title)
+//                    .padding(.horizontal, 12)
+//            }
+            List {
                 TextField("Title", text: titleBinding, prompt: nil)
                     .multilineTextAlignment(.leading)
                     .font(.title)
-                    .padding(.horizontal, 12)
                     .foregroundColor(.accentColor)
                     .focused($focusedField, equals: .title)
-                    .onSubmit {
-                        do {
-                            try viewContext.save()
-                        } catch {
-                            // Replace this implementation with code to handle the error appropriately.
-                            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                            let nsError = error as NSError
-                            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                        }
-                    }
-            } else {
-                Text(recipe.unwrappedTitle)
-                    .font(.title)
-                    .padding(.horizontal, 12)
-            }
-            List {
-                Button {
-                    presentingTimerView = true
-                } label: {
-                    Label("Start", systemImage: "play.fill")
-                }
                 Section("Notes") {
                     VStack(alignment: .leading) {
                         TextEditor(text: notesBinding)
-                            .frame(height: 100.0)
                             .focused($focusedField, equals: .notes)
                     }
                 }
@@ -153,20 +165,19 @@ struct RecipeDetail: View {
                 }
             }
         })
-        .listStyle(.grouped)
+        .environment(\.editMode, .constant(.active))
+        .listStyle(.insetGrouped)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $presentingTimerView) {
             TimerView(recipe: recipe)
         }
         .toolbar {
             ToolbarItem {
-                if focusedField == nil {
-                    EditButton()
-                } else {
-                    Button("Done") {
+                if focusedField != nil {
+                    Button {
                         $focusedField.wrappedValue = nil
                         editMode?.wrappedValue = .inactive
-                    }
+                    } label: { Image(systemName: "keyboard.chevron.compact.down") }
                 }
             }
         }

@@ -7,6 +7,66 @@
 
 import SwiftUI
 
+struct MenuButton: UIViewRepresentable {
+
+    class Coordinator {
+        var button: UIButton? {
+            didSet {
+                updateMenu(selectedKind: selectedKind.wrappedValue)
+            }
+        }
+        var menu: UIMenu
+        var selectedKind: Binding<RecipeStep.Kind> {
+            didSet {
+                updateMenu(selectedKind: selectedKind.wrappedValue)
+            }
+        }
+
+        init(selected: Binding<RecipeStep.Kind>) {
+            selectedKind = selected
+            menu = UIMenu()
+        }
+
+        func refresh() {
+            guard button?.title(for: .normal) != selectedKind.wrappedValue.description else {
+                return
+            }
+            updateMenu(selectedKind: selectedKind.wrappedValue)
+        }
+
+        private func updateMenu(selectedKind: RecipeStep.Kind) {
+            menu = menu.replacingChildren(RecipeStep.Kind.allCases.map({ kind in
+                UIAction(title: kind.description,
+                         state: selectedKind == kind ? .on : .off,
+                         handler: { _ in self.selectedKind.wrappedValue = kind })
+            }))
+            button?.menu = UIMenu(children: [UIAction(title: selectedKind.description, handler: { _ in })])
+            button?.setTitle(selectedKind.description, for: .normal)
+        }
+    }
+
+    let selected: Binding<RecipeStep.Kind>
+
+    init(_ selected: Binding<RecipeStep.Kind>) {
+        self.selected = selected
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(selected: selected)
+    }
+
+    func makeUIView(context: Context) -> UIButton {
+        let button = UIButton(configuration: .borderless(), primaryAction: nil)
+        context.coordinator.button = button
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }
+
+    func updateUIView(_ uiView: UIButton, context: Context) {
+        context.coordinator.selectedKind = selected
+    }
+}
+
 struct RecipeStepListItem: View {
     @ObservedObject
     var step: RecipeStep
@@ -31,14 +91,15 @@ struct RecipeStepListItem: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Text("\(index + 1).")
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 0) {
                 HStack(spacing: 8) {
-                    Button {
-                        showingDetail.toggle()
-                    } label: {
-                        Text("\(step.unwrappedKind.description)")
-                    }
-                    .foregroundColor(.accentColor)
+                    MenuButton($step.unwrappedKind)
+//                    Button {
+//                        showingDetail.toggle()
+//                    } label: {
+//                        Text("\(step.unwrappedKind.description)")
+//                    }
+//                    .foregroundColor(.accentColor)
                 }
                 Spacer()
                 if focusedField != nil {
@@ -59,9 +120,10 @@ struct RecipeStepListItem: View {
                         .frame(width: 50)
                         .fixedSize()
                         .textFieldStyle(.roundedBorder)
-                    Text(" seconds")
+                    Text(" s")
                         .foregroundColor(.secondary)
                         .fontWeight(.regular)
+                        .lineLimit(1)
                 }
             }
             .sheet(isPresented: $showingDetail) {
@@ -77,6 +139,10 @@ struct RecipeStepListItem: View {
 
 struct RecipeStepListItem_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeStepListItem(step: PersistenceController.previewRecipes().first!.steps!.firstObject! as! RecipeStep, index: 1)
+        EditModePreviewWrapper {
+            List(PersistenceController.previewRecipes().first!.steps!.array as! [RecipeStep]) { step in
+                RecipeStepListItem(step: step, index: 1)
+            }.environment(\.editMode, .constant(.active))
+        }
     }
 }
