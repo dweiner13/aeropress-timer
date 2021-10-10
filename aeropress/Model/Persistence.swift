@@ -15,15 +15,19 @@ struct PersistenceController {
         try! preview.container.viewContext.fetch(Recipe.fetchRequest())
     }
 
+    private(set) var previewFavoritesList: List!
+
     static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
+        var persistenceController = PersistenceController(inMemory: true)
+        let viewContext = persistenceController.container.viewContext
         let recipes: [Recipe] = (0..<10).map {
             let recipe = newRecipeFromTemplate(in: viewContext)
             recipe.title = "Recipe \($0 + 1)"
             return recipe
         }
-        recipes.first?.isFavorite = true
+        let previewFavoritesList = try! List.getOrCreateFavoritesList(context: viewContext)
+        previewFavoritesList.addToRecipes(recipes.first!)
+        persistenceController.previewFavoritesList = previewFavoritesList
         do {
             try viewContext.save()
         } catch {
@@ -32,7 +36,7 @@ struct PersistenceController {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        return result
+        return persistenceController
     }()
 
     let container: NSPersistentContainer

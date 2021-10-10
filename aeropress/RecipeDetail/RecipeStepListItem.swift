@@ -148,7 +148,7 @@ struct RecipeStepListItem_Previews: PreviewProvider {
     static var previews: some View {
         EditModePreviewWrapper {
             NavigationView {
-                List(PersistenceController.previewRecipes().first!.steps!.array as! [RecipeStep]) { step in
+                SwiftUI.List(PersistenceController.previewRecipes().first!.steps!.array as! [RecipeStep]) { step in
                     RecipeStepListItem(step: step, index: 1)
                 }.environment(\.editMode, .constant(.active))
             }

@@ -53,6 +53,10 @@ struct RecipeDetail: View {
     @Environment(\.editMode)
     private var editMode
 
+    var isEditing: Bool {
+        editMode?.wrappedValue.isEditing ?? true
+    }
+
     @Environment(\.dismiss)
     private var dismiss
 
@@ -84,10 +88,6 @@ struct RecipeDetail: View {
         }
     }
 
-    var isEditing: Bool {
-        editMode?.wrappedValue.isEditing ?? true
-    }
-
     func toggleEditing() {
         switch editMode?.wrappedValue {
         case .active, .transient: editMode?.wrappedValue = .inactive
@@ -101,7 +101,7 @@ struct RecipeDetail: View {
     var isNotesExpanded = false
 
     var body: some View {
-        List {
+        SwiftUI.List {
             TextField("Title", text: titleBinding, prompt: nil)
                 .multilineTextAlignment(.leading)
                 .font(.headline)

@@ -9,18 +9,25 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext)
+    private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title, ascending: true)],
-        predicate: NSPredicate(format: "isFavorite == true"),
-        animation: .default)
-    private var favoriteRecipes: FetchedResults<Recipe>
+    @Environment(\.favoritesList)
+    private var favoritesList: List!
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title, ascending: true)],
-        predicate: NSPredicate(format: "isFavorite == false"),
-        animation: .default)
+    @Environment(\.editMode)
+    private var editMode
+
+    @Environment(\.save)
+    private var save
+
+    var isEditing: Bool {
+        editMode?.wrappedValue.isEditing ?? true
+    }
+
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title,
+                                                     ascending: true)],
+                  animation: .default)
     private var notFavoriteRecipes: FetchedResults<Recipe>
 
     @State
@@ -34,12 +41,21 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                if favoriteRecipes.isEmpty {
+            SwiftUI.List {
+                if favoritesList.recipesUnwrapped.isEmpty {
                     viewsForRecipes(notFavoriteRecipes)
                 } else {
                     Section {
-                        viewsForRecipes(favoriteRecipes)
+                        viewsForRecipes(favoritesList.recipesUnwrapped)
+                            .onMove { fromIndices, toIndex in
+                                guard fromIndices.count == 1 else { fatalError() }
+                                let fromIndex = fromIndices.first!
+                                let mutableSet = NSMutableOrderedSet(orderedSet: favoritesList.recipes!)
+                                mutableSet.moveObjects(at: fromIndices, to: fromIndex < toIndex ? toIndex - 1 : toIndex)
+                                favoritesList.recipes = mutableSet
+
+                                save()
+                            }
                     } header: {
                         HStack {
                             Text("Pinned")
@@ -48,7 +64,7 @@ struct ContentView: View {
                                 .symbolRenderingMode(.multicolor)
                         }
                     }
-                    Section("Recipes") {
+                    Section("All Recipes") {
                         viewsForRecipes(notFavoriteRecipes)
                     }
                 }
@@ -56,7 +72,10 @@ struct ContentView: View {
                 .listStyle(.sidebar)
                 .navigationTitle("Recipes")
                 .toolbar {
-                    ToolbarItem {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
                         Button(action: addRecipe) {
                             Label("Add Recipe", systemImage: "plus")
                         }
@@ -75,8 +94,8 @@ struct ContentView: View {
     }
 
     @ViewBuilder
-    private func viewsForRecipes(_ recipes: FetchedResults<Recipe>) -> some View {
-        ForEach(recipes) { recipe in
+    private func viewsForRecipes<C: RandomAccessCollection>(_ recipes: C) -> some DynamicViewContent where C.Element == Recipe {
+        ForEach.init(recipes) { recipe in
             HStack(spacing: 16) {
                 Button(recipe.title ?? "") { runRecipe(recipe) }
                 Spacer()
@@ -132,12 +151,13 @@ struct ContentView: View {
         }
     }
 
-    @ViewBuilder
     private func toggleFavoriteButton(recipe: Recipe) -> some View {
-        Button { toggleFavoriteRecipe(recipe) } label: {
-            Label(recipe.isFavorite ? "Unpin Recipe" : "Pin Recipe", systemImage: recipe.isFavorite ? "pin.slash" : "pin")
+        let isFavorite = favoritesList.recipesUnwrapped.contains(recipe)
+        return Button { toggleFavoriteRecipe(recipe) } label: {
+            Label(isFavorite ? "Unpin Recipe" : "Pin Recipe",
+                  systemImage: isFavorite ? "pin.slash" : "pin")
         }
-        .tint(.orange)
+            .tint(.orange)
     }
 
     private func runRecipe(_ recipe: Recipe) {
@@ -148,14 +168,7 @@ struct ContentView: View {
         withAnimation {
             _ = Recipe(recipe: recipe, context: viewContext)
 
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            save()
         }
     }
 
@@ -163,29 +176,19 @@ struct ContentView: View {
         withAnimation {
             viewContext.delete(recipe)
 
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            save()
         }
     }
 
     private func toggleFavoriteRecipe(_ recipe: Recipe) {
         withAnimation {
-            recipe.isFavorite.toggle()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            if favoritesList.recipesUnwrapped.contains(recipe) {
+                favoritesList.removeFromRecipes(recipe)
+            } else {
+                favoritesList.addToRecipes(recipe)
             }
+
+            save()
         }
     }
 
@@ -193,14 +196,7 @@ struct ContentView: View {
         withAnimation {
             _ = newRecipeFromTemplate(in: viewContext)
 
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            save()
         }
     }
 }
@@ -214,6 +210,8 @@ private let recipeFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environment(\.favoritesList, PersistenceController.preview.previewFavoritesList)
     }
 }
