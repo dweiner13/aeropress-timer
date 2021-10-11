@@ -21,6 +21,9 @@ struct ContentView: View {
     @Environment(\.save)
     private var save
 
+    @Environment(\.undoManager)
+    private var undoManager
+
     var isEditing: Bool {
         editMode?.wrappedValue.isEditing ?? true
     }
@@ -90,6 +93,9 @@ struct ContentView: View {
             NavigationView {
                 RecipeDetail(recipe: recipe)
             }
+        }
+        .onAppear {
+            viewContext.undoManager = undoManager // <-- why not working?? :((( 
         }
     }
 
