@@ -22,6 +22,7 @@
 		3789170C270A1FCE00F696D6 /* RecipeStep+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789170B270A1FCE00F696D6 /* RecipeStep+.swift */; };
 		3789170E270A2F6C00F696D6 /* EditMovePreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789170D270A2F6C00F696D6 /* EditMovePreviewWrapper.swift */; };
 		37891716270A4CC900F696D6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37891715270A4CC900F696D6 /* TimerView.swift */; };
+		8381486E2714EA3600A6FB3D /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8381486D2714EA3600A6FB3D /* ding.wav */; };
 		838655F8271200A400C98DF3 /* KindPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838655F7271200A400C98DF3 /* KindPicker.swift */; };
 		838655FA2712027000C98DF3 /* RecipeStepListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838655F92712027000C98DF3 /* RecipeStepListItem.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		3789170B270A1FCE00F696D6 /* RecipeStep+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeStep+.swift"; sourceTree = "<group>"; };
 		3789170D270A2F6C00F696D6 /* EditMovePreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovePreviewWrapper.swift; sourceTree = "<group>"; };
 		37891715270A4CC900F696D6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		8381486D2714EA3600A6FB3D /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		838655F7271200A400C98DF3 /* KindPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindPicker.swift; sourceTree = "<group>"; };
 		838655F92712027000C98DF3 /* RecipeStepListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				372958CB271387E60014773F /* Model */,
 				838655F62711FB8800C98DF3 /* RecipeDetail */,
 				378916D8270A12DC00F696D6 /* Assets.xcassets */,
+				8381486D2714EA3600A6FB3D /* ding.wav */,
 				378916DA270A12DC00F696D6 /* Preview Content */,
 			);
 			path = aeropress;
@@ -287,6 +290,7 @@
 			files = (
 				378916DC270A12DC00F696D6 /* Preview Assets.xcassets in Resources */,
 				378916D9270A12DC00F696D6 /* Assets.xcassets in Resources */,
+				8381486E2714EA3600A6FB3D /* ding.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
