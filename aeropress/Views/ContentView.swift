@@ -95,7 +95,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            viewContext.undoManager = undoManager // <-- why not working?? :((( 
+            viewContext.undoManager = undoManager
         }
     }
 

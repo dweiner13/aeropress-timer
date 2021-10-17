@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import AVFoundation
 
 enum Stage {
     case getReady
@@ -78,9 +79,12 @@ class TimerModel: ObservableObject {
 
     private func goToNextStage() {
         guard let nextStage = stage(after: currentStage) else { fatalError() }
-        guard case .step(let step) = nextStage else { return }
 
         self.currentStage = nextStage
+
+        guard case .step(let step) = nextStage else { return }
+
+//        readText(step.unwrappedKind.description)
 
         let nextStageTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(step.durationSeconds),
                                                   repeats: false) { [weak self] timer in
@@ -90,6 +94,7 @@ class TimerModel: ObservableObject {
             }
             timer.invalidate()
             self.timer = nil
+            self.playDing()
             self.goToNextStage()
         }
         timer = nextStageTimer
@@ -103,6 +108,22 @@ class TimerModel: ObservableObject {
                 self.timeToNextFire = max(0, self.timer?.fireDate.timeIntervalSinceNow ?? -1)
             })
         }
+    }
+
+    private func playDing() {
+        let url = Bundle.main.url(forResource: "ding", withExtension: "wav")!
+        var soundID: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
+        guard soundID != 0 else {
+            fatalError("Could not play sound")
+        }
+        AudioServicesPlaySystemSound(soundID)
+    }
+
+    private func readText(_ text: String) {
+        let synthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: text)
+        synthesizer.speak(utterance)
     }
 }
 
