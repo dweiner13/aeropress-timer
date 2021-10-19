@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371CAE6D271CAEB700BEA3DD /* SpriteKitTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371CAE6C271CAEB700BEA3DD /* SpriteKitTestViewController.swift */; };
 		372958CA271387D40014773F /* List+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372958C9271387D40014773F /* List+.swift */; };
 		3764EC4D271C9FF100B92636 /* DynamicsTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3764EC4C271C9FF100B92636 /* DynamicsTestViewController.swift */; };
 		378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* AeropressApp.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		371CAE6C271CAEB700BEA3DD /* SpriteKitTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitTestViewController.swift; sourceTree = "<group>"; };
 		372958C9271387D40014773F /* List+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+.swift"; sourceTree = "<group>"; };
 		3764EC4C271C9FF100B92636 /* DynamicsTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicsTestViewController.swift; sourceTree = "<group>"; };
 		378916D1270A12D900F696D6 /* aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				3764EC4C271C9FF100B92636 /* DynamicsTestViewController.swift */,
+				371CAE6C271CAEB700BEA3DD /* SpriteKitTestViewController.swift */,
 			);
 			path = Dynamics;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */,
 				3789170E270A2F6C00F696D6 /* EditMovePreviewWrapper.swift in Sources */,
 				838655F8271200A400C98DF3 /* KindPicker.swift in Sources */,
+				371CAE6D271CAEB700BEA3DD /* SpriteKitTestViewController.swift in Sources */,
 				3764EC4D271C9FF100B92636 /* DynamicsTestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

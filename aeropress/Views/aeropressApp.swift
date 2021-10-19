@@ -60,8 +60,7 @@ struct AeropressApp: App {
 
     var body: some Scene {
         WindowGroup {
-             DynamicsTestViewControllerWrapper()
-                .edgesIgnoringSafeArea(.all)
+            SpriteKitHarness()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
 //                .environment(\.favoritesList, favoritesList)
