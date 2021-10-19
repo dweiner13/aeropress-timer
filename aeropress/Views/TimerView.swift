@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 import AVFoundation
 
-enum Stage {
+enum Stage: CustomStringConvertible {
     case getReady
     case step(RecipeStep)
     case done
@@ -20,6 +20,37 @@ enum Stage {
         }
         return step
     }
+
+    var description: String {
+        switch self {
+        case .getReady:
+            return "Get ready"
+        case .step(let step):
+            return step.unwrappedKind.description
+        case .done:
+            return "Done. Enjoy!"
+        }
+    }
+
+    var attributedDescription: AttributedString {
+        switch self {
+        case .getReady:
+            return .init("Get ready")
+        case .step(let step):
+            return .init(step.unwrappedKind.description)
+        case .done:
+            var s = AttributedString("Done. Enjoy!")
+            s[s.range(of: "Enjoy!")!].accessibilitySpeechAdjustedPitch = 2
+            return s
+        }
+    }
+}
+
+/// - precondition: `0 <= f <= 1`
+func AVSpeechRateFromFraction(_ f: Float) -> Float {
+    precondition(f >= 0 && f <= 1, "0 <= f <= 1")
+    let (max, min) = (AVSpeechUtteranceMaximumSpeechRate, AVSpeechUtteranceMinimumSpeechRate)
+    return min + (max - min) * f
 }
 
 class TimerModel: ObservableObject {
@@ -42,7 +73,7 @@ class TimerModel: ObservableObject {
     func stage(after stage: Stage) -> Stage? {
         switch stage {
         case .getReady:
-            return .step(steps.first!)
+            return .step(steps.last!)
         case .step(let step):
             guard let index = steps.firstIndex(of: step) else {
                 fatalError("uhhh")
@@ -71,6 +102,8 @@ class TimerModel: ObservableObject {
     @Published
     var timeToNextFire: TimeInterval?
 
+    let synthesizer = AVSpeechSynthesizer()
+
     deinit {
         print("denit... invalidating...")
         timer?.invalidate()
@@ -82,11 +115,17 @@ class TimerModel: ObservableObject {
 
         self.currentStage = nextStage
 
+        playDing()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.readText(nextStage.attributedDescription)
+        }
+
         guard case .step(let step) = nextStage else { return }
 
-//        readText(step.unwrappedKind.description)
-
-        let nextStageTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(step.durationSeconds),
+//        let timeInterval = TimeInterval(step.durationSeconds)
+        let timeInterval: TimeInterval = 5
+        let nextStageTimer = Timer.scheduledTimer(withTimeInterval: timeInterval,
                                                   repeats: false) { [weak self] timer in
             print("nextStageTimer firing...")
             guard let self = self else {
@@ -94,7 +133,6 @@ class TimerModel: ObservableObject {
             }
             timer.invalidate()
             self.timer = nil
-            self.playDing()
             self.goToNextStage()
         }
         timer = nextStageTimer
@@ -120,9 +158,10 @@ class TimerModel: ObservableObject {
         AudioServicesPlaySystemSound(soundID)
     }
 
-    private func readText(_ text: String) {
-        let synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: text)
+    private func readText(_ attrString: AttributedString) {
+        let utterance = AVSpeechUtterance(attributedString: NSAttributedString(attrString))
+        utterance.rate = AVSpeechRateFromFraction(0.4)
+        utterance.pitchMultiplier = 1.2
         synthesizer.speak(utterance)
     }
 }
@@ -175,7 +214,6 @@ struct TimerView: View {
                     .buttonStyle(.bordered)
             }
         }
-
     }
 }
 
