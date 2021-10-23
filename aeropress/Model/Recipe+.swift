@@ -16,6 +16,14 @@ extension Recipe {
         steps ?? []
     }
 
+    var unwrappedLists: Set<List> {
+        lists as? Set<List> ?? []
+    }
+
+    var isFavorite: Bool {
+        unwrappedLists.contains(where: \.isFavoritesList)
+    }
+
     convenience init(recipe: Recipe, context: NSManagedObjectContext) {
         self.init(context: context)
 

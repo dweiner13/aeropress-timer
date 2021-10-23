@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import IntentsUI
 
 struct StickyHeader<Content: View>: View {
 

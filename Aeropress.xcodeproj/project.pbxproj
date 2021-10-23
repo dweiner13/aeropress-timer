@@ -8,8 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		3704A39D271F7B0E00E5AF45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */; };
+		3704A3A0272395AB00E5AF45 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3704A39F272395AB00E5AF45 /* Intents.intentdefinition */; };
+		3704A3BA2723A26300E5AF45 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3704A3A82723A16B00E5AF45 /* Intents.framework */; };
+		3704A3BD2723A26300E5AF45 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3BC2723A26300E5AF45 /* IntentHandler.swift */; };
+		3704A3C12723A26300E5AF45 /* AeropressIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3704A3B92723A26300E5AF45 /* AeropressIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3704A3C52723A33400E5AF45 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3704A39F272395AB00E5AF45 /* Intents.intentdefinition */; };
+		3704A3C62723A54700E5AF45 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916DD270A12DC00F696D6 /* Persistence.swift */; };
+		3704A3C72723A5AD00E5AF45 /* aeropress.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */; };
+		3704A3C82723A5B900E5AF45 /* Recipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37891709270A1C9D00F696D6 /* Recipe+.swift */; };
+		3704A3C92723A5B900E5AF45 /* RecipeStep+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789170B270A1FCE00F696D6 /* RecipeStep+.swift */; };
+		3704A3CA2723A5B900E5AF45 /* List+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372958C9271387D40014773F /* List+.swift */; };
+		3704A3CC2723AE4A00E5AF45 /* IntentRecipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */; };
+		3704A3CD2723AE7400E5AF45 /* IntentRecipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */; };
+		3704A3D12724468700E5AF45 /* ListEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3D02724468700E5AF45 /* ListEditor.swift */; };
 		372958CA271387D40014773F /* List+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372958C9271387D40014773F /* List+.swift */; };
-		378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* aeropressApp.swift */; };
+		378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* AeropressApp.swift */; };
 		378916D7270A12D900F696D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D6270A12D900F696D6 /* ContentView.swift */; };
 		378916D9270A12DC00F696D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378916D8270A12DC00F696D6 /* Assets.xcassets */; };
 		378916DC270A12DC00F696D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378916DB270A12DC00F696D6 /* Preview Assets.xcassets */; };
@@ -29,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3704A3BF2723A26300E5AF45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 378916C9270A12D900F696D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3704A3B82723A26300E5AF45;
+			remoteInfo = AeropressIntents;
+		};
 		378916E7270A12DD00F696D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 378916C9270A12D900F696D6 /* Project object */;
@@ -45,11 +65,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3704A3B42723A16B00E5AF45 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3704A3C12723A26300E5AF45 /* AeropressIntents.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		3704A39F272395AB00E5AF45 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		3704A3A1272395DC00E5AF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3704A3A82723A16B00E5AF45 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		3704A3B92723A26300E5AF45 /* AeropressIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AeropressIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3704A3BC2723A26300E5AF45 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		3704A3BE2723A26300E5AF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentRecipe+.swift"; sourceTree = "<group>"; };
+		3704A3CE272434FD00E5AF45 /* aeropress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = aeropress.entitlements; sourceTree = "<group>"; };
+		3704A3CF2724351600E5AF45 /* AeropressIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AeropressIntents.entitlements; sourceTree = "<group>"; };
+		3704A3D02724468700E5AF45 /* ListEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListEditor.swift; path = aeropress/Views/ListEditor.swift; sourceTree = SOURCE_ROOT; };
 		372958C9271387D40014773F /* List+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+.swift"; sourceTree = "<group>"; };
 		378916D1270A12D900F696D6 /* aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		378916D4270A12D900F696D6 /* aeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressApp.swift; sourceTree = "<group>"; };
+		378916D4270A12D900F696D6 /* AeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AeropressApp.swift; sourceTree = "<group>"; };
 		378916D6270A12D900F696D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		378916D8270A12DC00F696D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		378916DB270A12DC00F696D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -71,6 +115,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3704A3B62723A26300E5AF45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3704A3BA2723A26300E5AF45 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		378916CE270A12D900F696D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,6 +147,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3704A39E2723959E00E5AF45 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				3704A39F272395AB00E5AF45 /* Intents.intentdefinition */,
+				3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		3704A3A72723A16B00E5AF45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3704A3A82723A16B00E5AF45 /* Intents.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3704A3BB2723A26300E5AF45 /* AeropressIntents */ = {
+			isa = PBXGroup;
+			children = (
+				3704A3CF2724351600E5AF45 /* AeropressIntents.entitlements */,
+				3704A3BC2723A26300E5AF45 /* IntentHandler.swift */,
+				3704A3BE2723A26300E5AF45 /* Info.plist */,
+			);
+			path = AeropressIntents;
+			sourceTree = "<group>";
+		};
 		372958CB271387E60014773F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,10 +189,12 @@
 		372958CC271387F80014773F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				378916D4270A12D900F696D6 /* aeropressApp.swift */,
+				378916D8270A12DC00F696D6 /* Assets.xcassets */,
+				378916D4270A12D900F696D6 /* AeropressApp.swift */,
 				378916D6270A12D900F696D6 /* ContentView.swift */,
 				37891715270A4CC900F696D6 /* TimerView.swift */,
 				3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */,
+				3704A3D02724468700E5AF45 /* ListEditor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +205,8 @@
 				378916D3270A12D900F696D6 /* aeropress */,
 				378916E9270A12DD00F696D6 /* aeropressTests */,
 				378916F3270A12DD00F696D6 /* aeropressUITests */,
+				3704A3BB2723A26300E5AF45 /* AeropressIntents */,
+				3704A3A72723A16B00E5AF45 /* Frameworks */,
 				378916D2270A12D900F696D6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -134,6 +217,7 @@
 				378916D1270A12D900F696D6 /* aeropress.app */,
 				378916E6270A12DD00F696D6 /* aeropressTests.xctest */,
 				378916F0270A12DD00F696D6 /* aeropressUITests.xctest */,
+				3704A3B92723A26300E5AF45 /* AeropressIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,10 +225,12 @@
 		378916D3270A12D900F696D6 /* aeropress */ = {
 			isa = PBXGroup;
 			children = (
+				3704A3CE272434FD00E5AF45 /* aeropress.entitlements */,
+				3704A3A1272395DC00E5AF45 /* Info.plist */,
+				3704A39E2723959E00E5AF45 /* Intents */,
 				372958CC271387F80014773F /* Views */,
 				372958CB271387E60014773F /* Model */,
 				838655F62711FB8800C98DF3 /* RecipeDetail */,
-				378916D8270A12DC00F696D6 /* Assets.xcassets */,
 				8381486D2714EA3600A6FB3D /* ding.wav */,
 				378916DA270A12DC00F696D6 /* Preview Content */,
 			);
@@ -190,6 +276,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3704A3B82723A26300E5AF45 /* AeropressIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3704A3C22723A26300E5AF45 /* Build configuration list for PBXNativeTarget "AeropressIntents" */;
+			buildPhases = (
+				3704A3B52723A26300E5AF45 /* Sources */,
+				3704A3B62723A26300E5AF45 /* Frameworks */,
+				3704A3B72723A26300E5AF45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AeropressIntents;
+			productName = AeropressIntents;
+			productReference = 3704A3B92723A26300E5AF45 /* AeropressIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		378916D0270A12D900F696D6 /* aeropress */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropress" */;
@@ -197,10 +300,12 @@
 				378916CD270A12D900F696D6 /* Sources */,
 				378916CE270A12D900F696D6 /* Frameworks */,
 				378916CF270A12D900F696D6 /* Resources */,
+				3704A3B42723A16B00E5AF45 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3704A3C02723A26300E5AF45 /* PBXTargetDependency */,
 			);
 			name = aeropress;
 			productName = aeropress;
@@ -253,6 +358,9 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					3704A3B82723A26300E5AF45 = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					378916D0270A12D900F696D6 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -266,7 +374,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 378916CC270A12D900F696D6 /* Build configuration list for PBXProject "aeropress" */;
+			buildConfigurationList = 378916CC270A12D900F696D6 /* Build configuration list for PBXProject "Aeropress" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -282,11 +390,19 @@
 				378916D0270A12D900F696D6 /* aeropress */,
 				378916E5270A12DD00F696D6 /* aeropressTests */,
 				378916EF270A12DD00F696D6 /* aeropressUITests */,
+				3704A3B82723A26300E5AF45 /* AeropressIntents */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3704A3B72723A26300E5AF45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		378916CF270A12D900F696D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,11 +430,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3704A3B52723A26300E5AF45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3704A3C82723A5B900E5AF45 /* Recipe+.swift in Sources */,
+				3704A3C92723A5B900E5AF45 /* RecipeStep+.swift in Sources */,
+				3704A3C62723A54700E5AF45 /* Persistence.swift in Sources */,
+				3704A3CD2723AE7400E5AF45 /* IntentRecipe+.swift in Sources */,
+				3704A3CA2723A5B900E5AF45 /* List+.swift in Sources */,
+				3704A3C52723A33400E5AF45 /* Intents.intentdefinition in Sources */,
+				3704A3C72723A5AD00E5AF45 /* aeropress.xcdatamodeld in Sources */,
+				3704A3BD2723A26300E5AF45 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		378916CD270A12D900F696D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3704A3A0272395AB00E5AF45 /* Intents.intentdefinition in Sources */,
 				37891716270A4CC900F696D6 /* TimerView.swift in Sources */,
+				3704A3CC2723AE4A00E5AF45 /* IntentRecipe+.swift in Sources */,
 				372958CA271387D40014773F /* List+.swift in Sources */,
 				838655FA2712027000C98DF3 /* RecipeStepListItem.swift in Sources */,
 				3789170C270A1FCE00F696D6 /* RecipeStep+.swift in Sources */,
@@ -327,9 +460,10 @@
 				378916D7270A12D900F696D6 /* ContentView.swift in Sources */,
 				37891708270A1A3B00F696D6 /* RecipeDetail.swift in Sources */,
 				378916E1270A12DC00F696D6 /* aeropress.xcdatamodeld in Sources */,
-				378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */,
+				378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */,
 				3789170E270A2F6C00F696D6 /* EditMovePreviewWrapper.swift in Sources */,
 				3704A39D271F7B0E00E5AF45 /* CircularProgressView.swift in Sources */,
+				3704A3D12724468700E5AF45 /* ListEditor.swift in Sources */,
 				838655F8271200A400C98DF3 /* KindPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +488,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3704A3C02723A26300E5AF45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3704A3B82723A26300E5AF45 /* AeropressIntents */;
+			targetProxy = 3704A3BF2723A26300E5AF45 /* PBXContainerItemProxy */;
+		};
 		378916E8270A12DD00F696D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 378916D0270A12D900F696D6 /* aeropress */;
@@ -367,6 +506,58 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3704A3C32723A26300E5AF45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AeropressIntents/AeropressIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AeropressIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AeropressIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropress.AeropressIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3704A3C42723A26300E5AF45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AeropressIntents/AeropressIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AeropressIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AeropressIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.aeropress.AeropressIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		378916F8270A12DD00F696D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -486,14 +677,17 @@
 		378916FB270A12DD00F696D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = aeropress/aeropress.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeropress/Preview Content\"";
 				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = aeropress/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -515,14 +709,17 @@
 		378916FC270A12DD00F696D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = aeropress/aeropress.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeropress/Preview Content\"";
 				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = aeropress/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -638,7 +835,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		378916CC270A12D900F696D6 /* Build configuration list for PBXProject "aeropress" */ = {
+		3704A3C22723A26300E5AF45 /* Build configuration list for PBXNativeTarget "AeropressIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3704A3C32723A26300E5AF45 /* Debug */,
+				3704A3C42723A26300E5AF45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		378916CC270A12D900F696D6 /* Build configuration list for PBXProject "Aeropress" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				378916F8270A12DD00F696D6 /* Debug */,

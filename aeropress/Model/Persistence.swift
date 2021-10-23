@@ -41,10 +41,20 @@ struct PersistenceController {
 
     let container: NSPersistentContainer
 
+    let storeURL: URL = {
+        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.org.danielweiner.aeropress")?
+            .appendingPathComponent("aeropress.sqlite") else {
+                fatalError("Cannot get directory")
+            }
+        return url
+    }()
+
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "aeropress")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            container.persistentStoreDescriptions.first!.url = storeURL
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

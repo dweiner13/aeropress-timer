@@ -1,5 +1,5 @@
 //
-//  aeropressApp.swift
+//  AeropressApp.swift
 //  aeropress
 //
 //  Created by Dan Weiner on 10/3/21.
@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Intents
 
 struct FavoritesListKey: EnvironmentKey {
     static let defaultValue: List? = nil
@@ -49,7 +50,7 @@ func errorMessage(coreDataError: NSError) -> String {
 }
 
 @main
-struct aeropressApp: App {
+struct AeropressApp: App {
     let persistenceController: PersistenceController
     let favoritesList: List
 
@@ -69,7 +70,6 @@ struct aeropressApp: App {
                 } message: { error in
                     Text(errorMessage(coreDataError: error as NSError))
                 }
-
         }
     }
 
@@ -92,5 +92,9 @@ struct aeropressApp: App {
         } catch {
             fatalError("Could not get or create Favorites list due to error \(error.localizedDescription).")
         }
+        let intent = StartRecipeIntent()
+        intent.suggestedInvocationPhrase = "Start Recipe"
+        let shortcut = INShortcut(intent: intent)!
+        INVoiceShortcutCenter.shared.setShortcutSuggestions([shortcut])
     }
 }

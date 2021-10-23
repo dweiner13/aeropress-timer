@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import AVFoundation
+import Intents
 
 enum Stage: CustomStringConvertible {
     case getReady
@@ -90,6 +91,14 @@ class TimerModel: ObservableObject {
     }
 
     func start() {
+        let intent = StartRecipeIntent()
+        intent.recipe = IntentRecipe(identifier: recipe.objectID.uriRepresentation().absoluteString, display: recipe.unwrappedTitle)
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate { error in
+            error.map {
+                print("FAILED DONATING INTERACTION: \($0.localizedDescription), \(String(describing: interaction))")
+            }
+        }
         goToNextStage()
     }
 
@@ -124,7 +133,6 @@ class TimerModel: ObservableObject {
         guard case .step(let step) = nextStage else { return }
 
         let timeInterval = TimeInterval(step.durationSeconds)
-//        let timeInterval: TimeInterval = 5
         let nextStageTimer = Timer.scheduledTimer(withTimeInterval: timeInterval,
                                                   repeats: false) { [weak self] timer in
             print("nextStageTimer firing...")

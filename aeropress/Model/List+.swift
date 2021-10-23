@@ -29,9 +29,13 @@ extension List {
         return recipes.array as! [Recipe]
     }
 
+    var isFavoritesList: Bool {
+        isInternal && title == Self.kFavoritesListTitle
+    }
+
     static func getFavoritesList(context: NSManagedObjectContext) throws -> List {
         let request = fetchRequest()
-        request.predicate = NSPredicate(format: "title == %@", kFavoritesListTitle)
+        request.predicate = NSPredicate(format: "title == %@ and isInternal == true", kFavoritesListTitle)
         let results = try context.fetch(request)
         guard !results.isEmpty else {
             throw DWError.couldNotGetFavoritesList
@@ -54,6 +58,7 @@ extension List {
     static func createFavoritesList(context: NSManagedObjectContext) throws -> List {
         let list = List(context: context)
         list.title = kFavoritesListTitle
+        list.isInternal = true
         return list
     }
 }

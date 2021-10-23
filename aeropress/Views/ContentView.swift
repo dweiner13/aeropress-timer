@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Intents
 
 struct ContentView: View {
     @Environment(\.managedObjectContext)
@@ -28,8 +29,7 @@ struct ContentView: View {
         editMode?.wrappedValue.isEditing ?? true
     }
 
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Recipe.title,
-                                                     ascending: true)],
+    @FetchRequest(sortDescriptors: [.init(keyPath: \Recipe.title, ascending: true)],
                   animation: .default)
     private var notFavoriteRecipes: FetchedResults<Recipe>
 
@@ -41,6 +41,9 @@ struct ContentView: View {
 
     @State
     var showingDeleteConf: Bool = false
+
+    @State
+    var showingListEditor = false
 
     var body: some View {
         NavigationView {
@@ -83,6 +86,11 @@ struct ContentView: View {
                             Label("Add Recipe", systemImage: "plus")
                         }
                     }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: showListEditor) {
+                            Text("Lists")
+                        }
+                    }
                 }
             Text("Select a recipe")
         }
@@ -94,9 +102,34 @@ struct ContentView: View {
                 RecipeDetail(recipe: recipe)
             }
         }
+        .sheet(isPresented: $showingListEditor) {
+            ListEditor()
+        }
         .onAppear {
             viewContext.undoManager = undoManager
         }
+        .onContinueUserActivity("StartRecipeIntent", perform: continueStartRecipeActivity(_:))
+    }
+
+    private func showListEditor() {
+        showingListEditor = true
+    }
+
+    private func continueStartRecipeActivity(_ userActivity: NSUserActivity) {
+        guard userActivity.activityType == "StartRecipeIntent",
+              let intent = userActivity.interaction?.intent as? StartRecipeIntent,
+              let recipe = intent.recipe else {
+            fatalError("Could not get intent to continue from user activity, \(userActivity.description)")
+        }
+        guard let rawURI = recipe.identifier,
+              let uri = URL(string: rawURI),
+              let id = self.viewContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: uri) else {
+            fatalError("Could not get recipe's managed object ID")
+        }
+        guard let recipe = self.viewContext.object(with: id) as? Recipe else {
+            fatalError("Could not get recipe")
+        }
+        currentTimerRecipe = recipe
     }
 
     @ViewBuilder
