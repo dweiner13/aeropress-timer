@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3704A39D271F7B0E00E5AF45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */; };
 		372958CA271387D40014773F /* List+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372958C9271387D40014773F /* List+.swift */; };
 		378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* aeropressApp.swift */; };
 		378916D7270A12D900F696D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D6270A12D900F696D6 /* ContentView.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		372958C9271387D40014773F /* List+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+.swift"; sourceTree = "<group>"; };
 		378916D1270A12D900F696D6 /* aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378916D4270A12D900F696D6 /* aeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressApp.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				378916D4270A12D900F696D6 /* aeropressApp.swift */,
 				378916D6270A12D900F696D6 /* ContentView.swift */,
 				37891715270A4CC900F696D6 /* TimerView.swift */,
+				3704A39C271F7B0E00E5AF45 /* CircularProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				378916E1270A12DC00F696D6 /* aeropress.xcdatamodeld in Sources */,
 				378916D5270A12D900F696D6 /* aeropressApp.swift in Sources */,
 				3789170E270A2F6C00F696D6 /* EditMovePreviewWrapper.swift in Sources */,
+				3704A39D271F7B0E00E5AF45 /* CircularProgressView.swift in Sources */,
 				838655F8271200A400C98DF3 /* KindPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

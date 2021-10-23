@@ -56,6 +56,8 @@ func AVSpeechRateFromFraction(_ f: Float) -> Float {
 class TimerModel: ObservableObject {
     @Published var currentStage: Stage
 
+    @Published var currentStageProgress: Float = 0
+
     var timer: Timer?
 
     var countdownTimer: Timer?
@@ -73,7 +75,7 @@ class TimerModel: ObservableObject {
     func stage(after stage: Stage) -> Stage? {
         switch stage {
         case .getReady:
-            return .step(steps.last!)
+            return .step(steps.first!)
         case .step(let step):
             guard let index = steps.firstIndex(of: step) else {
                 fatalError("uhhh")
@@ -115,16 +117,14 @@ class TimerModel: ObservableObject {
 
         self.currentStage = nextStage
 
-        playDing()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        playDing {
             self.readText(nextStage.attributedDescription)
         }
 
         guard case .step(let step) = nextStage else { return }
 
-//        let timeInterval = TimeInterval(step.durationSeconds)
-        let timeInterval: TimeInterval = 5
+        let timeInterval = TimeInterval(step.durationSeconds)
+//        let timeInterval: TimeInterval = 5
         let nextStageTimer = Timer.scheduledTimer(withTimeInterval: timeInterval,
                                                   repeats: false) { [weak self] timer in
             print("nextStageTimer firing...")
@@ -139,30 +139,47 @@ class TimerModel: ObservableObject {
         timeToNextFire = max(0, nextStageTimer.fireDate.timeIntervalSinceNow)
 
         if countdownTimer == nil {
-            countdownTimer = .scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
+            countdownTimer = .scheduledTimer(withTimeInterval: 1/30, repeats: true, block: { [weak self] timer in
                 guard let self = self else {
                     return
                 }
-                self.timeToNextFire = max(0, self.timer?.fireDate.timeIntervalSinceNow ?? -1)
+                guard let timer = self.timer else {
+                    return
+                }
+                let timeToNextFire = max(0, timer.fireDate.timeIntervalSinceNow)
+                self.timeToNextFire = timeToNextFire
+                guard let step = self.currentStage.step else {
+                    return
+                }
+                self.currentStageProgress = Float(1 - (timeToNextFire / Double(step.durationSeconds)))
             })
         }
     }
 
-    private func playDing() {
+    private func playDing(completion: @escaping () -> Void) {
         let url = Bundle.main.url(forResource: "ding", withExtension: "wav")!
         var soundID: SystemSoundID = 0
         AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
         guard soundID != 0 else {
             fatalError("Could not play sound")
         }
-        AudioServicesPlaySystemSound(soundID)
+        AudioServicesPlaySystemSoundWithCompletion(soundID) {
+            AudioServicesDisposeSystemSoundID(soundID)
+            completion()
+        }
     }
 
     private func readText(_ attrString: AttributedString) {
-        let utterance = AVSpeechUtterance(attributedString: NSAttributedString(attrString))
-        utterance.rate = AVSpeechRateFromFraction(0.4)
-        utterance.pitchMultiplier = 1.2
-        synthesizer.speak(utterance)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.ambient)
+            let utterance = AVSpeechUtterance(attributedString: NSAttributedString(attrString))
+            utterance.rate = AVSpeechRateFromFraction(0.4)
+            utterance.pitchMultiplier = 1.2
+            synthesizer.usesApplicationAudioSession = true
+            synthesizer.speak(utterance)
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
     }
 }
 
@@ -202,10 +219,16 @@ struct TimerView: View {
                 case .done:
                     Text("Done")
                 case .step(let step):
+                    ZStack {
+                        Text(timeRemaining)
+                            .font(.largeTitle.bold())
+                            .transition(.move(edge: .leading))
+                        CircularProgressView(progress: timerModel.currentStageProgress)
+                            .frame(width: 100, height: 100)
+                            .animation(.spring(), value: timerModel.currentStageProgress)
+                    }
                     Text("\(step.unwrappedKind.description)")
                         .font(.largeTitle)
-                    Text(timeRemaining)
-                        .font(.largeTitle.bold())
                 }
             }
             VStack {
