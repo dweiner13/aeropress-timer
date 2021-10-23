@@ -54,6 +54,9 @@ struct RecipeDetail: View {
     @Environment(\.editMode)
     private var editMode
 
+    @Environment(\.save)
+    private var save
+
     var isEditing: Bool {
         editMode?.wrappedValue.isEditing ?? true
     }
@@ -133,14 +136,7 @@ struct RecipeDetail: View {
                     mutableSet.moveObjects(at: fromIndices, to: fromIndex < toIndex ? toIndex - 1 : toIndex)
                     recipe.steps = mutableSet
 
-                    do {
-                        try viewContext.save()
-                    } catch {
-                        // Replace this implementation with code to handle the error appropriately.
-                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                        let nsError = error as NSError
-                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                    }
+                    save()
                 }
                 .onDelete { indices in
                     let stepsToDelete = indices.map { steps[$0] }
@@ -148,14 +144,7 @@ struct RecipeDetail: View {
                         viewContext.delete(step)
                     }
 
-                    do {
-                        try viewContext.save()
-                    } catch {
-                        // Replace this implementation with code to handle the error appropriately.
-                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                        let nsError = error as NSError
-                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                    }
+                    save()
                 }
                 Button {
                     withAnimation {
@@ -169,14 +158,7 @@ struct RecipeDetail: View {
         .onChange(of: focusedField) { newValue in
             // Save whenever focus blurs
             if newValue == nil {
-                do {
-                    try viewContext.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
+                save()
             }
         }
 //        .environment(\.editMode, .constant(.active))
@@ -212,14 +194,7 @@ struct RecipeDetail: View {
         step.durationSeconds = 15
         step.recipe = recipe
         recipe.addToSteps(step)
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        save()
     }
 }
 
