@@ -11,10 +11,16 @@ import CoreData
 class IntentHandler: INExtension {
     
     override func handler(for intent: INIntent) -> Any {
+        log.debug("IntentHandler handling intent \(intent.debugDescription)")
         switch intent {
         case is StartRecipeIntent: return StartRecipeHandler()
         default: return self
         }
+    }
+
+    override init() {
+        super.init()
+        setUpLogging()
     }
     
 }

@@ -54,7 +54,9 @@ struct ContentView: View {
                     Section {
                         viewsForRecipes(favoritesList.recipesUnwrapped)
                             .onMove { fromIndices, toIndex in
-                                guard fromIndices.count == 1 else { fatalError() }
+                                guard fromIndices.count == 1 else {
+                                    dwFatalError("onMove received more than 1 index — this is not supported.")
+                                }
                                 let fromIndex = fromIndices.first!
                                 let mutableSet = NSMutableOrderedSet(orderedSet: favoritesList.recipes!)
                                 mutableSet.moveObjects(at: fromIndices, to: fromIndex < toIndex ? toIndex - 1 : toIndex)
@@ -118,15 +120,15 @@ struct ContentView: View {
         guard userActivity.activityType == "StartRecipeIntent",
               let intent = userActivity.interaction?.intent as? StartRecipeIntent,
               let recipe = intent.recipe else {
-            fatalError("Could not get intent to continue from user activity, \(userActivity.description)")
+            dwFatalError("Could not get intent to continue from user activity, \(userActivity.description)")
         }
         guard let rawURI = recipe.identifier,
               let uri = URL(string: rawURI),
               let id = self.viewContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: uri) else {
-            fatalError("Could not get recipe's managed object ID")
+            dwFatalError("Could not get recipe's managed object ID")
         }
         guard let recipe = self.viewContext.object(with: id) as? Recipe else {
-            fatalError("Could not get recipe")
+            dwFatalError("Could not get recipe")
         }
         currentTimerRecipe = recipe
     }

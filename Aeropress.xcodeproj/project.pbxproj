@@ -21,6 +21,10 @@
 		3704A3CC2723AE4A00E5AF45 /* IntentRecipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */; };
 		3704A3CD2723AE7400E5AF45 /* IntentRecipe+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3CB2723AE4A00E5AF45 /* IntentRecipe+.swift */; };
 		3704A3D12724468700E5AF45 /* ListEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704A3D02724468700E5AF45 /* ListEditor.swift */; };
+		37105289272456940077CE3D /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 37105288272456940077CE3D /* SwiftyBeaver */; };
+		3710528B272458170077CE3D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3710528A272458170077CE3D /* Utils.swift */; };
+		3710528C272458250077CE3D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3710528A272458170077CE3D /* Utils.swift */; };
+		3710528E272458AB0077CE3D /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3710528D272458AB0077CE3D /* SwiftyBeaver */; };
 		372958CA271387D40014773F /* List+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372958C9271387D40014773F /* List+.swift */; };
 		378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D4270A12D900F696D6 /* AeropressApp.swift */; };
 		378916D7270A12D900F696D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378916D6270A12D900F696D6 /* ContentView.swift */; };
@@ -91,6 +95,7 @@
 		3704A3CE272434FD00E5AF45 /* aeropress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = aeropress.entitlements; sourceTree = "<group>"; };
 		3704A3CF2724351600E5AF45 /* AeropressIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AeropressIntents.entitlements; sourceTree = "<group>"; };
 		3704A3D02724468700E5AF45 /* ListEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListEditor.swift; path = aeropress/Views/ListEditor.swift; sourceTree = SOURCE_ROOT; };
+		3710528A272458170077CE3D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		372958C9271387D40014773F /* List+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+.swift"; sourceTree = "<group>"; };
 		378916D1270A12D900F696D6 /* Aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378916D4270A12D900F696D6 /* AeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AeropressApp.swift; sourceTree = "<group>"; };
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3704A3BA2723A26300E5AF45 /* Intents.framework in Frameworks */,
+				3710528E272458AB0077CE3D /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37105289272456940077CE3D /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +240,7 @@
 				838655F62711FB8800C98DF3 /* RecipeDetail */,
 				8381486D2714EA3600A6FB3D /* ding.wav */,
 				378916DA270A12DC00F696D6 /* Preview Content */,
+				3710528A272458170077CE3D /* Utils.swift */,
 			);
 			path = Aeropress;
 			sourceTree = "<group>";
@@ -289,6 +297,9 @@
 			dependencies = (
 			);
 			name = AeropressIntents;
+			packageProductDependencies = (
+				3710528D272458AB0077CE3D /* SwiftyBeaver */,
+			);
 			productName = AeropressIntents;
 			productReference = 3704A3B92723A26300E5AF45 /* AeropressIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -308,6 +319,9 @@
 				3704A3C02723A26300E5AF45 /* PBXTargetDependency */,
 			);
 			name = Aeropress;
+			packageProductDependencies = (
+				37105288272456940077CE3D /* SwiftyBeaver */,
+			);
 			productName = aeropress;
 			productReference = 378916D1270A12D900F696D6 /* Aeropress.app */;
 			productType = "com.apple.product-type.application";
@@ -383,6 +397,9 @@
 				Base,
 			);
 			mainGroup = 378916C8270A12D900F696D6;
+			packageReferences = (
+				37105287272456940077CE3D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = 378916D2270A12D900F696D6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -436,6 +453,7 @@
 			files = (
 				3704A3C82723A5B900E5AF45 /* Recipe+.swift in Sources */,
 				3704A3C92723A5B900E5AF45 /* RecipeStep+.swift in Sources */,
+				3710528C272458250077CE3D /* Utils.swift in Sources */,
 				3704A3C62723A54700E5AF45 /* Persistence.swift in Sources */,
 				3704A3CD2723AE7400E5AF45 /* IntentRecipe+.swift in Sources */,
 				3704A3CA2723A5B900E5AF45 /* List+.swift in Sources */,
@@ -458,6 +476,7 @@
 				378916DE270A12DC00F696D6 /* Persistence.swift in Sources */,
 				3789170A270A1C9D00F696D6 /* Recipe+.swift in Sources */,
 				378916D7270A12D900F696D6 /* ContentView.swift in Sources */,
+				3710528B272458170077CE3D /* Utils.swift in Sources */,
 				37891708270A1A3B00F696D6 /* RecipeDetail.swift in Sources */,
 				378916E1270A12DC00F696D6 /* aeropress.xcdatamodeld in Sources */,
 				378916D5270A12D900F696D6 /* AeropressApp.swift in Sources */,
@@ -883,6 +902,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37105287272456940077CE3D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37105288272456940077CE3D /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37105287272456940077CE3D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+		3710528D272458AB0077CE3D /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37105287272456940077CE3D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		378916DF270A12DC00F696D6 /* aeropress.xcdatamodeld */ = {

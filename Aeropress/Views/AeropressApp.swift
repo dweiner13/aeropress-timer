@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import Intents
+import SwiftyBeaver
 
 struct FavoritesListKey: EnvironmentKey {
     static let defaultValue: List? = nil
@@ -79,8 +80,7 @@ struct AeropressApp: App {
         } catch {
             showingError = true
             self.error = error
-            print("🚨 dumping Core Data error:")
-            dump(error)
+            log.warning("Error attempting to save: \(String(describing: error))")
             persistenceController.container.viewContext.rollback()
         }
     }
@@ -90,8 +90,15 @@ struct AeropressApp: App {
         do {
             favoritesList = try List.getOrCreateFavoritesList(context: persistenceController.container.viewContext)
         } catch {
-            fatalError("Could not get or create Favorites list due to error \(error.localizedDescription).")
+            let msg = "Could not get or create Favorites list due to error \(error.localizedDescription)."
+            dwFatalError(msg)
         }
+
+        setUpLogging()
+
+        log.info("App initialized")
+
+        // Donate intents
         let intent = StartRecipeIntent()
         intent.suggestedInvocationPhrase = "Start Recipe"
         let shortcut = INShortcut(intent: intent)!

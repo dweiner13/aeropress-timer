@@ -79,7 +79,7 @@ class TimerModel: ObservableObject {
             return .step(steps.first!)
         case .step(let step):
             guard let index = steps.firstIndex(of: step) else {
-                fatalError("uhhh")
+                dwFatalError("uhhh")
             }
             guard steps.indices.contains(index + 1) else {
                 return .done
@@ -96,7 +96,7 @@ class TimerModel: ObservableObject {
         let interaction = INInteraction(intent: intent, response: nil)
         interaction.donate { error in
             error.map {
-                print("FAILED DONATING INTERACTION: \($0.localizedDescription), \(String(describing: interaction))")
+                log.warning("failed donating interaction: \($0.localizedDescription), \(String(describing: interaction))")
             }
         }
         goToNextStage()
@@ -116,13 +116,14 @@ class TimerModel: ObservableObject {
     let synthesizer = AVSpeechSynthesizer()
 
     deinit {
-        print("denit... invalidating...")
         timer?.invalidate()
         countdownTimer?.invalidate()
     }
 
     private func goToNextStage() {
-        guard let nextStage = stage(after: currentStage) else { fatalError() }
+        guard let nextStage = stage(after: currentStage) else {
+            dwFatalError("onMove received more than 1 index — this is not supported.")
+        }
 
         self.currentStage = nextStage
 
@@ -135,7 +136,6 @@ class TimerModel: ObservableObject {
         let timeInterval = TimeInterval(step.durationSeconds)
         let nextStageTimer = Timer.scheduledTimer(withTimeInterval: timeInterval,
                                                   repeats: false) { [weak self] timer in
-            print("nextStageTimer firing...")
             guard let self = self else {
                 return
             }
@@ -169,7 +169,7 @@ class TimerModel: ObservableObject {
         var soundID: SystemSoundID = 0
         AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
         guard soundID != 0 else {
-            fatalError("Could not play sound")
+            dwFatalError("Could not play sound")
         }
         AudioServicesPlaySystemSoundWithCompletion(soundID) {
             AudioServicesDisposeSystemSoundID(soundID)

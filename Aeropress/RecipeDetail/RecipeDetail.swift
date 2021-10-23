@@ -130,7 +130,9 @@ struct RecipeDetail: View {
                         .focused($focusedField, equals: .duration)
                 }
                 .onMove { fromIndices, toIndex in
-                    guard fromIndices.count == 1 else { fatalError() }
+                    guard fromIndices.count == 1 else {
+                        dwFatalError("onMove received more than 1 index — this is not supported.")
+                    }
                     let fromIndex = fromIndices.first!
                     let mutableSet = NSMutableOrderedSet(orderedSet: recipe.unwrappedSteps)
                     mutableSet.moveObjects(at: fromIndices, to: fromIndex < toIndex ? toIndex - 1 : toIndex)
