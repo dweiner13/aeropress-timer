@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "378916D0270A12D900F696D6"
-               BuildableName = "aeropress.app"
-               BlueprintName = "aeropress"
+               BuildableName = "Aeropress.app"
+               BlueprintName = "Aeropress"
                ReferencedContainer = "container:Aeropress.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "378916D0270A12D900F696D6"
-            BuildableName = "aeropress.app"
-            BlueprintName = "aeropress"
+            BuildableName = "Aeropress.app"
+            BlueprintName = "Aeropress"
             ReferencedContainer = "container:Aeropress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "378916D0270A12D900F696D6"
-            BuildableName = "aeropress.app"
-            BlueprintName = "aeropress"
+            BuildableName = "Aeropress.app"
+            BlueprintName = "Aeropress"
             ReferencedContainer = "container:Aeropress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

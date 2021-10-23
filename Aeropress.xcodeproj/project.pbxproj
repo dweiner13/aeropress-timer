@@ -92,16 +92,16 @@
 		3704A3CF2724351600E5AF45 /* AeropressIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AeropressIntents.entitlements; sourceTree = "<group>"; };
 		3704A3D02724468700E5AF45 /* ListEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListEditor.swift; path = aeropress/Views/ListEditor.swift; sourceTree = SOURCE_ROOT; };
 		372958C9271387D40014773F /* List+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+.swift"; sourceTree = "<group>"; };
-		378916D1270A12D900F696D6 /* aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916D1270A12D900F696D6 /* Aeropress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aeropress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378916D4270A12D900F696D6 /* AeropressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AeropressApp.swift; sourceTree = "<group>"; };
 		378916D6270A12D900F696D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		378916D8270A12DC00F696D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		378916DB270A12DC00F696D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		378916DD270A12DC00F696D6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		378916E0270A12DC00F696D6 /* aeropress.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = aeropress.xcdatamodel; sourceTree = "<group>"; };
-		378916E6270A12DD00F696D6 /* aeropressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aeropressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916E6270A12DD00F696D6 /* AeropressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeropressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		378916EA270A12DD00F696D6 /* aeropressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressTests.swift; sourceTree = "<group>"; };
-		378916F0270A12DD00F696D6 /* aeropressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aeropressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		378916F0270A12DD00F696D6 /* AeropressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeropressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		378916F4270A12DD00F696D6 /* aeropressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressUITests.swift; sourceTree = "<group>"; };
 		378916F6270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeropressUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		37891707270A1A3B00F696D6 /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
@@ -202,9 +202,9 @@
 		378916C8270A12D900F696D6 = {
 			isa = PBXGroup;
 			children = (
-				378916D3270A12D900F696D6 /* aeropress */,
-				378916E9270A12DD00F696D6 /* aeropressTests */,
-				378916F3270A12DD00F696D6 /* aeropressUITests */,
+				378916D3270A12D900F696D6 /* Aeropress */,
+				378916E9270A12DD00F696D6 /* AeropressTests */,
+				378916F3270A12DD00F696D6 /* AeropressUITests */,
 				3704A3BB2723A26300E5AF45 /* AeropressIntents */,
 				3704A3A72723A16B00E5AF45 /* Frameworks */,
 				378916D2270A12D900F696D6 /* Products */,
@@ -214,15 +214,15 @@
 		378916D2270A12D900F696D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				378916D1270A12D900F696D6 /* aeropress.app */,
-				378916E6270A12DD00F696D6 /* aeropressTests.xctest */,
-				378916F0270A12DD00F696D6 /* aeropressUITests.xctest */,
+				378916D1270A12D900F696D6 /* Aeropress.app */,
+				378916E6270A12DD00F696D6 /* AeropressTests.xctest */,
+				378916F0270A12DD00F696D6 /* AeropressUITests.xctest */,
 				3704A3B92723A26300E5AF45 /* AeropressIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		378916D3270A12D900F696D6 /* aeropress */ = {
+		378916D3270A12D900F696D6 /* Aeropress */ = {
 			isa = PBXGroup;
 			children = (
 				3704A3CE272434FD00E5AF45 /* aeropress.entitlements */,
@@ -234,7 +234,7 @@
 				8381486D2714EA3600A6FB3D /* ding.wav */,
 				378916DA270A12DC00F696D6 /* Preview Content */,
 			);
-			path = aeropress;
+			path = Aeropress;
 			sourceTree = "<group>";
 		};
 		378916DA270A12DC00F696D6 /* Preview Content */ = {
@@ -246,21 +246,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		378916E9270A12DD00F696D6 /* aeropressTests */ = {
+		378916E9270A12DD00F696D6 /* AeropressTests */ = {
 			isa = PBXGroup;
 			children = (
 				378916EA270A12DD00F696D6 /* aeropressTests.swift */,
 			);
-			path = aeropressTests;
+			path = AeropressTests;
 			sourceTree = "<group>";
 		};
-		378916F3270A12DD00F696D6 /* aeropressUITests */ = {
+		378916F3270A12DD00F696D6 /* AeropressUITests */ = {
 			isa = PBXGroup;
 			children = (
 				378916F4270A12DD00F696D6 /* aeropressUITests.swift */,
 				378916F6270A12DD00F696D6 /* aeropressUITestsLaunchTests.swift */,
 			);
-			path = aeropressUITests;
+			path = AeropressUITests;
 			sourceTree = "<group>";
 		};
 		838655F62711FB8800C98DF3 /* RecipeDetail */ = {
@@ -293,9 +293,9 @@
 			productReference = 3704A3B92723A26300E5AF45 /* AeropressIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		378916D0270A12D900F696D6 /* aeropress */ = {
+		378916D0270A12D900F696D6 /* Aeropress */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropress" */;
+			buildConfigurationList = 378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "Aeropress" */;
 			buildPhases = (
 				378916CD270A12D900F696D6 /* Sources */,
 				378916CE270A12D900F696D6 /* Frameworks */,
@@ -307,14 +307,14 @@
 			dependencies = (
 				3704A3C02723A26300E5AF45 /* PBXTargetDependency */,
 			);
-			name = aeropress;
+			name = Aeropress;
 			productName = aeropress;
-			productReference = 378916D1270A12D900F696D6 /* aeropress.app */;
+			productReference = 378916D1270A12D900F696D6 /* Aeropress.app */;
 			productType = "com.apple.product-type.application";
 		};
-		378916E5270A12DD00F696D6 /* aeropressTests */ = {
+		378916E5270A12DD00F696D6 /* AeropressTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressTests" */;
+			buildConfigurationList = 378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "AeropressTests" */;
 			buildPhases = (
 				378916E2270A12DD00F696D6 /* Sources */,
 				378916E3270A12DD00F696D6 /* Frameworks */,
@@ -325,14 +325,14 @@
 			dependencies = (
 				378916E8270A12DD00F696D6 /* PBXTargetDependency */,
 			);
-			name = aeropressTests;
+			name = AeropressTests;
 			productName = aeropressTests;
-			productReference = 378916E6270A12DD00F696D6 /* aeropressTests.xctest */;
+			productReference = 378916E6270A12DD00F696D6 /* AeropressTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		378916EF270A12DD00F696D6 /* aeropressUITests */ = {
+		378916EF270A12DD00F696D6 /* AeropressUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressUITests" */;
+			buildConfigurationList = 37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "AeropressUITests" */;
 			buildPhases = (
 				378916EC270A12DD00F696D6 /* Sources */,
 				378916ED270A12DD00F696D6 /* Frameworks */,
@@ -343,9 +343,9 @@
 			dependencies = (
 				378916F2270A12DD00F696D6 /* PBXTargetDependency */,
 			);
-			name = aeropressUITests;
+			name = AeropressUITests;
 			productName = aeropressUITests;
-			productReference = 378916F0270A12DD00F696D6 /* aeropressUITests.xctest */;
+			productReference = 378916F0270A12DD00F696D6 /* AeropressUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -387,9 +387,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				378916D0270A12D900F696D6 /* aeropress */,
-				378916E5270A12DD00F696D6 /* aeropressTests */,
-				378916EF270A12DD00F696D6 /* aeropressUITests */,
+				378916D0270A12D900F696D6 /* Aeropress */,
+				378916E5270A12DD00F696D6 /* AeropressTests */,
+				378916EF270A12DD00F696D6 /* AeropressUITests */,
 				3704A3B82723A26300E5AF45 /* AeropressIntents */,
 			);
 		};
@@ -495,12 +495,12 @@
 		};
 		378916E8270A12DD00F696D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 378916D0270A12D900F696D6 /* aeropress */;
+			target = 378916D0270A12D900F696D6 /* Aeropress */;
 			targetProxy = 378916E7270A12DD00F696D6 /* PBXContainerItemProxy */;
 		};
 		378916F2270A12DD00F696D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 378916D0270A12D900F696D6 /* aeropress */;
+			target = 378916D0270A12D900F696D6 /* Aeropress */;
 			targetProxy = 378916F1270A12DD00F696D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -613,6 +613,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Aeropress;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -667,6 +668,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = Aeropress;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -758,7 +760,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aeropress.app/aeropress";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aeropress.app/Aeropress";
 			};
 			name = Debug;
 		};
@@ -782,7 +784,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aeropress.app/aeropress";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aeropress.app/Aeropress";
 			};
 			name = Release;
 		};
@@ -853,7 +855,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropress" */ = {
+		378916FA270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "Aeropress" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				378916FB270A12DD00F696D6 /* Debug */,
@@ -862,7 +864,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressTests" */ = {
+		378916FD270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "AeropressTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				378916FE270A12DD00F696D6 /* Debug */,
@@ -871,7 +873,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "aeropressUITests" */ = {
+		37891700270A12DD00F696D6 /* Build configuration list for PBXNativeTarget "AeropressUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37891701270A12DD00F696D6 /* Debug */,

@@ -75,7 +75,6 @@ struct ContentView: View {
                     }
                 }
             }
-                .listStyle(.sidebar)
                 .navigationTitle("Recipes")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

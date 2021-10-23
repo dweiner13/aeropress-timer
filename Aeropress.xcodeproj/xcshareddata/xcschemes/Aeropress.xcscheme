@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "378916D0270A12D900F696D6"
-               BuildableName = "aeropress.app"
-               BlueprintName = "aeropress"
+               BuildableName = "Aeropress.app"
+               BlueprintName = "Aeropress"
                ReferencedContainer = "container:Aeropress.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "378916E5270A12DD00F696D6"
-               BuildableName = "aeropressTests.xctest"
-               BlueprintName = "aeropressTests"
-               ReferencedContainer = "container:Aeropress.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "378916EF270A12DD00F696D6"
-               BuildableName = "aeropressUITests.xctest"
-               BlueprintName = "aeropressUITests"
-               ReferencedContainer = "container:Aeropress.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -65,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "378916D0270A12D900F696D6"
-            BuildableName = "aeropress.app"
-            BlueprintName = "aeropress"
+            BuildableName = "Aeropress.app"
+            BlueprintName = "Aeropress"
             ReferencedContainer = "container:Aeropress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "378916D0270A12D900F696D6"
-            BuildableName = "aeropress.app"
-            BlueprintName = "aeropress"
+            BuildableName = "Aeropress.app"
+            BlueprintName = "Aeropress"
             ReferencedContainer = "container:Aeropress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
